@@ -18,9 +18,9 @@ function Sidebar() {
       </h2>
       <ChatList
         chats={[
-          { id: 1, title: "Chat-1" },
-          { id: 2, title: "Chat-2" },
-          { id: 3, title: "Chat-3" },
+          { id: 1, title: "Chat-1", isActive: false },
+          { id: 2, title: "Chat-2", isActive: true },
+          { id: 3, title: "Chat-3", isActive: false },
         ]}
       />
     </aside>
