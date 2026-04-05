@@ -9,12 +9,12 @@ function Sidebar() {
         <div className="rounded-md bg-indigo-900 p-1.5">
           <BookIcon className="h-6 w-6 text-indigo-100" />
         </div>
-        <h1 className="text-3xl font-bold text-indigo-900 dark:text-indigo-100">
+        <h1 className="text-2xl font-bold text-indigo-900 dark:text-indigo-100">
           ELI5
         </h1>
       </div>
       <h2 className="mb-2 text-lg font-semibold text-indigo-900 dark:text-indigo-100">
-        Chats:
+        Chats
       </h2>
       <ChatList
         chats={[
