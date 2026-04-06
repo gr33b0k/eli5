@@ -17,3 +17,13 @@
 
     --color-border: oklch(0.88 0.015 250);
 }
+
+@layer utilities {
+    .bg-gradient {
+        background-color: var(--color-white);
+        background-image: radial-gradient(at 24% 74%, var(--color-primary) 0px, transparent 50%),
+            radial-gradient(at 96% 93%, oklch(from var(--color-primary) l c h / 0.8) 0px, transparent 50%),
+            radial-gradient(at 92% 14%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%),
+            radial-gradient(at 0% 0%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%);
+    }
+}
