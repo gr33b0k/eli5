@@ -1,3 +1,19 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+    --color-bg: oklch(0.97 0.01 250);
+    --color-bg-muted: oklch(0.92 0.02 250);
+
+    --color-surface: oklch(0.98 0.01 250);
+
+    --color-text: oklch(0.43 0.102 265.15);
+    --color-text-muted: oklch(0.53 0.051 255.74);
+
+    --color-primary: hsl(223, 93%, 75%);
+    --color-primary-hover: oklch(0.58 0.19 260);
+    --color-primary-active: oklch(0.52 0.20 260);
+
+    --color-accent: oklch(0.68 0.14 265);
+
+    --color-border: oklch(0.88 0.015 250);
+}
