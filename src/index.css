@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&display=swap');
 @import "tailwindcss";
 
 @theme {
+    /* Colors */
     --color-bg: oklch(0.97 0.01 250);
     --color-bg-muted: oklch(0.92 0.02 250);
 
@@ -9,21 +11,26 @@
     --color-text: oklch(0.43 0.102 265.15);
     --color-text-muted: oklch(0.53 0.051 255.74);
 
-    --color-primary: hsl(223, 93%, 75%);
+    --color-primary: oklch(0.73 0.1295 266.68);
     --color-primary-hover: oklch(0.58 0.19 260);
     --color-primary-active: oklch(0.52 0.20 260);
 
-    --color-accent: oklch(0.68 0.14 265);
+    --color-accent: oklch(0.61 0.18 268.9);
 
     --color-border: oklch(0.88 0.015 250);
+
+    /* Texts */
+    --font-miranda: 'Miranda Sans', sans-serif
 }
 
-@layer utilities {
-    .bg-gradient {
-        background-color: var(--color-white);
-        background-image: radial-gradient(at 24% 74%, var(--color-primary) 0px, transparent 50%),
-            radial-gradient(at 96% 93%, oklch(from var(--color-primary) l c h / 0.8) 0px, transparent 50%),
-            radial-gradient(at 92% 14%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%),
-            radial-gradient(at 0% 0%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%);
-    }
+@utility bg-gradient {
+    background-color: var(--color-white);
+    background-image: radial-gradient(at 24% 74%, var(--color-primary) 0px, transparent 50%),
+        radial-gradient(at 96% 93%, oklch(from var(--color-primary) l c h / 0.8) 0px, transparent 50%),
+        radial-gradient(at 92% 14%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, oklch(from var(--color-primary) l c h / 0.7) 0px, transparent 50%);
+}
+
+@utility glass {
+    @apply bg-surface/30 backdrop-blur-md shadow-primary/40 shadow-md;
 }
