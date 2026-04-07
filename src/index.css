@@ -32,7 +32,7 @@
 }
 
 @utility glass {
-    @apply bg-surface/30 backdrop-blur-md shadow-primary/40 shadow-md;
+    @apply bg-surface/20 backdrop-blur-md shadow-primary/60 shadow-md;
 }
 
 :root {
