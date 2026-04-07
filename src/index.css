@@ -20,7 +20,9 @@
     --color-border: oklch(0.88 0.015 250);
 
     /* Texts */
-    --font-miranda: 'Miranda Sans', sans-serif
+    --font-miranda: 'Miranda Sans', sans-serif;
+    /* Shadows */
+    --shadow-even: 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
 }
 
 @utility bg-gradient {
