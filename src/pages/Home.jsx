@@ -1,5 +1,11 @@
+import ExplanationInput from "../components/explanation/ExplanationInput";
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <ExplanationInput />
+    </>
+  );
 }
 
 export default Home;
