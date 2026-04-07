@@ -34,3 +34,7 @@
 @utility glass {
     @apply bg-surface/30 backdrop-blur-md shadow-primary/40 shadow-md;
 }
+
+:root {
+    font-family: var(--font-miranda);
+}
