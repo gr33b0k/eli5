@@ -4,7 +4,7 @@ function Sidebar() {
   return (
     <aside className="glass flex w-80 flex-col gap-6 rounded-3xl p-6">
       <h1 className="text-text flex items-center gap-2">
-        <span className="block text-3xl/4 font-bold">ELI5</span>
+        <span className="block text-3xl font-bold">ELI5</span>
         <div className="text-xs">
           <span className="block">Explain it like</span>
           <span className="block">i'm five</span>
