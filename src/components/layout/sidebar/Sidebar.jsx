@@ -2,7 +2,7 @@ import ChatList from "./ChatList";
 
 function Sidebar() {
   return (
-    <aside className="glass flex w-80 flex-col gap-6 px-6 py-8">
+    <aside className="glass flex w-80 flex-col gap-6 rounded-3xl p-6">
       <h1 className="text-text flex items-center gap-2">
         <span className="block text-3xl/4 font-bold">ELI5</span>
         <div className="text-xs">
@@ -10,7 +10,7 @@ function Sidebar() {
           <span className="block">i'm five</span>
         </div>
       </h1>
-      <button className="bg-accent rounded-md px-4 py-2 text-white">
+      <button className="bg-accent shadow-primary/50 rounded-3xl px-4 py-2 text-white shadow-md">
         + New Chat
       </button>
       <div>
