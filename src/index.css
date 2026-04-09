@@ -51,6 +51,12 @@
   @apply bg-surface/40 shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
 }
 
+@utility custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+  /* scrollbar-gutter: stable; */
+}
+
 :root {
   font-family: var(--font-miranda);
 }

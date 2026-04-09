@@ -4,7 +4,7 @@ function ContentCard() {
   return (
     <article className="glass text-text flex min-h-0 flex-1 flex-col rounded-4xl p-5 ease-in-out">
       <h2 className="mb-5 text-xl font-medium">Artificial Intelligence</h2>
-      <div className="flex flex-col gap-5 overflow-y-auto">
+      <div className="custom-scrollbar -mr-2.5 flex flex-col gap-5 overflow-y-auto pr-2.5">
         <ContentSection
           type="Idea"
           content="Lorem ipsum dolor sit amet consectetur adipisicing elit. 
