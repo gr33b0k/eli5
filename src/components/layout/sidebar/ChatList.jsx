@@ -5,7 +5,7 @@ function ChatList({ chats }) {
         <li
           key={chat.id}
           className={
-            "text-text cursor-pointer rounded-3xl px-3 py-2 transition-colors duration-300 ease-in-out " +
+            "text-text cursor-pointer rounded-4xl px-3 py-2 transition-colors duration-300 ease-in-out " +
             (chat.isActive ? "glass" : "hover:bg-surface/60")
           }
         >
