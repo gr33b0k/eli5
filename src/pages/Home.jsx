@@ -12,13 +12,29 @@ const topics = [
 
 function Home() {
   const [query, setQuery] = useState("");
+  const [response, setResponse] = useState(null);
   const [level, setLevel] = useState("eli5");
+
+  const handleExplain = async (q) => {
+    setQuery(q);
+
+    const result = await fetch("http://localhost:3000/api/explain", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: q, level }),
+    });
+
+    const data = await result.json();
+    setResponse(data);
+  };
 
   return (
     <>
-      {query ? (
+      {response ? (
         <>
-          <ContentCard title={query} />
+          <ContentCard content={response} />
           <button className="btn-primary self-center">Explain Deeper</button>
         </>
       ) : (
@@ -35,7 +51,7 @@ function Home() {
               <ul className="text-text flex flex-wrap justify-center gap-2">
                 {topics.map((topic) => (
                   <li
-                    onClick={() => setQuery(topic)}
+                    onClick={() => handleExplain(topic)}
                     className="glass cursor-pointer rounded-4xl px-3 py-2"
                     key={topic}
                   >
@@ -43,7 +59,7 @@ function Home() {
                   </li>
                 ))}
               </ul>
-              <ExplanationInput onSubmit={(value) => setQuery(value)} />
+              <ExplanationInput onSubmit={(value) => handleExplain(value)} />
               <LevelSelector
                 level={level}
                 onChange={(level) => setLevel(level)}
