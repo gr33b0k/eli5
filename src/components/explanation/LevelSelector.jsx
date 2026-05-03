@@ -6,9 +6,7 @@ const LEVELS = [
   { id: "expert", label: "Expert", description: "I know the basics" },
 ];
 
-function LevelSelector() {
-  const [level, setLevel] = useState("eli5");
-
+function LevelSelector({ level, onChange }) {
   return (
     <div className="glass relative flex self-center rounded-4xl p-1">
       <span
@@ -25,7 +23,7 @@ function LevelSelector() {
             "z-10 min-w-35 rounded-4xl p-2 transition-colors duration-300 ease-in-out " +
             (l.id === level ? "text-surface" : "text-text-muted")
           }
-          onClick={() => l.id !== level && setLevel(l.id)}
+          onClick={() => l.id !== level && onChange(l.id)}
         >
           <span className="block text-sm leading-tight font-semibold">
             {l.label}
