@@ -3,7 +3,7 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-app.get("/api/explain", async (req, res) => {
+app.post("/api/explain", async (req, res) => {
   const { query, level } = req.body;
 
   res.json({
