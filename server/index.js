@@ -1,45 +1,117 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "./server/.env" });
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 const port = 3000;
+
+const API_KEY = process.env.OPENROUTER_API_KEY;
 
 app.post("/api/explain", async (req, res) => {
   const { query, level } = req.body;
 
-  res.json({
-    title: query,
-    sections: [
-      {
-        type: "Idea",
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Cupiditate qui deserunt eligendi, sit optio quibusdam ipsa cumque ipsam! 
-                  Facere perferendis velit aspernatur, libero ab maiores 
-                  error vero perspiciatis voluptatum fugit.`,
-      },
-      {
-        type: "Example",
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                  Obcaecati enim a earum rerum labore magnam dolorem mollitia iste, 
-                  aliquam recusandae similique quia dignissimos at. Nobis voluptas ipsum quae et magni!
-                  Ipsa fugit natus, quis adipisci dolor architecto veniam recusandae, quod dolore nisi
-                  accusantium doloremque nemo excepturi delectus. Dolor magni sint autem ullam eum officiis
-                  mollitia similique. Laudantium totam saepe provident.`,
-      },
-      {
-        type: "Summary",
-        content: `Itaque dolor voluptate nemo quia quod. Reiciendis magnam
-                  alias temporibus rerum nesciunt quia illum id possimus neque 
-                  rem nisi provident distinctio, nam iusto a nemo explicabo aut sint saepe ut?
-                  Ea placeat accusamus sunt laborum aperiam nemo, assumenda at. Adipisci,
-                  voluptas corporis accusamus magnam minus culpa vitae voluptates deserunt
-                  consequuntur est cumque? Temporibus rerum, laudantium facilis recusandae 
-                  inventore consectetur blanditiis.`,
-      },
-    ],
+  const messages = [
+    {
+      role: "system",
+      content: `
+                You are an expert educational tutor. 
+                
+                
+                Your job is to explain concepts clearly based on the user's requested level.
+
+                USER LEVEL: ${level}
+
+                You MUST always return ONLY valid JSON. No markdown, no extra text.
+                
+
+                OUTPUT FORMAT (strict):
+                {
+                    "title": string,
+                    "sections": [
+                        {
+                            "type": "Idea",
+                            "content": string
+                        },
+                        {
+                            "type": "Example",
+                            "content": string
+                        },
+                        {
+                            "type": "Summary",
+                            "content": string
+                        }
+                    ]
+                }
+
+                USER LEVEL RULES:
+
+                1. eli5 (explain like I'm 5):
+                - Very simple language
+                - Short sentences
+                - Use analogies from everyday life
+                - Avoid technical terms completely
+                - If unavoidable, explain them instantly in simple words
+
+                2. beginner:
+                - Simple but correct explanation
+                - Introduce basic terminology
+                - Use examples
+                - No deep theory, no formalism overload
+
+                3. expert:
+                - Precise and technical explanation
+                - Use correct terminology
+                - Can include formal definitions
+                - Assume strong background knowledge
+                - Focus on depth and correctness
+
+                GLOBAL RULES:
+                - Always adapt explanation strictly to the level
+                - Do NOT mix levels
+                - Do NOT include anything outside JSON
+                - Do NOT add extra keys
+                - Keep structure exactly as specified
+                `,
+    },
+    {
+      role: "user",
+      content: query,
+    },
+  ];
+
+  const result = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-oss-120b:free",
+      messages,
+      temperature: 0.7,
+    }),
   });
+
+  const data = await result.json();
+
+  const content = data.choices[0].message.content;
+
+  let parsed;
+
+  try {
+    parsed = JSON.parse(content);
+  } catch (e) {
+    return res
+      .status(500)
+      .json({ error: "Model returned invalid JSON", raw: content });
+  }
+
+  res.json(parsed);
 });
 
 app.listen(port, () => {
