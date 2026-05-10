@@ -48,7 +48,7 @@
 }
 
 @utility glass {
-  @apply bg-surface/40 shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
+  @apply bg-surface/60 shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
 }
 
 @utility custom-scrollbar {
