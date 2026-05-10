@@ -1,16 +1,38 @@
+import { useState } from "react";
+import { PaperPlaneRightIcon } from "@phosphor-icons/react";
+
 function ExplanationInput({ onSubmit }) {
+  const [value, setValue] = useState("");
+
+  const handleSubmit = () => {
+    if (!value.trim()) return;
+
+    onSubmit(value);
+    setValue("");
+  };
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && onSubmit) {
-      onSubmit(e.target.value);
+      handleSubmit();
     }
   };
 
   return (
-    <input
-      onKeyDown={handleKeyDown}
-      className="glass text-text caret-text active:shadow-accent focus:shadow-primary focus:shadow-even rounded-4xl px-5 py-4 outline-0 transition-shadow duration-300 ease-in-out"
-      placeholder="What topic do you want to break down?"
-    />
+    <div className="glass text-text focus-within:shadow-primary focus-within:shadow-even flex gap-2 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out">
+      <input
+        value={value}
+        onKeyDown={handleKeyDown}
+        onChange={(e) => setValue(e.target.value)}
+        className="caret-text active:shadow-accent flex-1 outline-0"
+        placeholder="What topic do you want to break down?"
+      />
+      <button
+        onClick={() => handleSubmit()}
+        className="btn-primary px-3 py-2 text-white"
+      >
+        <PaperPlaneRightIcon size={22} />
+      </button>
+    </div>
   );
 }
 
