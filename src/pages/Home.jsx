@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LightbulbIcon } from "@phosphor-icons/react";
 import ContentCard from "../components/explanation/card/ContentCard";
 import ExplanationInput from "../components/explanation/ExplanationInput";
 import LevelSelector from "../components/explanation/LevelSelector";
@@ -35,7 +36,9 @@ function Home() {
       {response ? (
         <>
           <ContentCard content={response} />
-          <button className="btn-primary self-center">Explain Deeper</button>
+          <div className="glass flex flex-col gap-1 rounded-4xl p-4">
+            <ExplanationInput onSubmit={(value) => handleExplain(value)} />
+          </div>
         </>
       ) : (
         <>

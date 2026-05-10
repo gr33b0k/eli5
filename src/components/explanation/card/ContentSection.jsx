@@ -14,14 +14,14 @@ function ContentSection({ type, content }) {
   const Icon = ICONS[type];
 
   return (
-    <section className="border-border flex items-center gap-5 border-b pb-5 last:border-none last:pb-0">
-      <span className="glass text-accent rounded-2xl p-3">
-        {Icon && <Icon size={24} className="text-accent" weight="bold" />}
-      </span>
-      <div>
+    <section className="border-border flex flex-1 flex-col justify-center gap-2 border-b p-4 last:border-none">
+      <div className="flex items-center gap-2">
+        <span className="text-accent rounded-2xl">
+          {Icon && <Icon size={20} className="text-accent" weight="bold" />}
+        </span>
         <h3 className="text-accent text-lg font-medium">{type}</h3>
-        <p className="">{content}</p>
       </div>
+      <p className="">{content}</p>
     </section>
   );
 }
