@@ -22,7 +22,7 @@ function Home() {
     setQuery(q);
     setLoading(true);
 
-    const result = await fetch("http://localhost:3000/api/explain", {
+    const result = await fetch("http://localhost:3000/explain", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function Home() {
               className="text-text text-center text-4xl font-bold"
             >
               Understand{" "}
-              <span className="from-primary-active to-primary relative inline-block bg-linear-to-r bg-clip-text text-transparent italic">
+              <span className="from-primary-active to-primary relative bg-linear-to-r bg-clip-text text-transparent italic">
                 anything
               </span>{" "}
               at your level
