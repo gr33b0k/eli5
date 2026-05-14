@@ -1,18 +1,6 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
+export async function explain(req, res) {
+  const API_KEY = process.env.OPENROUTER_API_KEY;
 
-dotenv.config({ path: "./server/.env" });
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-const port = 3000;
-
-const API_KEY = process.env.OPENROUTER_API_KEY;
-
-app.post("/api/explain", async (req, res) => {
   const { query, level } = req.body;
 
   const messages = [
@@ -112,8 +100,4 @@ app.post("/api/explain", async (req, res) => {
   }
 
   res.json(parsed);
-});
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+}
