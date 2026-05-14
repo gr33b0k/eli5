@@ -3,6 +3,7 @@ import {
   TestTubeIcon,
   NotepadIcon,
 } from "@phosphor-icons/react";
+import { motion } from "motion/react";
 
 const ICONS = {
   Idea: LightbulbIcon,
@@ -10,11 +11,26 @@ const ICONS = {
   Summary: NotepadIcon,
 };
 
+const item = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 function ContentSection({ type, content }) {
   const Icon = ICONS[type];
 
   return (
-    <section className="border-border flex flex-1 flex-col justify-center gap-2 border-b p-4 last:border-none">
+    <motion.section
+      variants={item}
+      className="border-border flex flex-1 flex-col justify-center gap-2 border-b p-4 last:border-none"
+    >
       <div className="flex items-center gap-2">
         <span className="text-accent rounded-2xl">
           {Icon && <Icon size={20} className="text-accent" weight="bold" />}
@@ -22,7 +38,7 @@ function ContentSection({ type, content }) {
         <h3 className="text-accent text-lg font-medium">{type}</h3>
       </div>
       <p className="">{content}</p>
-    </section>
+    </motion.section>
   );
 }
 export default ContentSection;

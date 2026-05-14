@@ -4,7 +4,7 @@ function MainLayout({ children }) {
   return (
     <div className="bg-gradient relative flex h-screen overflow-hidden p-4">
       <Sidebar />
-      <main className="flex flex-1 flex-col justify-center gap-4 pl-4">
+      <main className="relative ml-4 flex h-full flex-1 flex-col gap-4 overflow-hidden rounded-4xl">
         {children}
       </main>
     </div>

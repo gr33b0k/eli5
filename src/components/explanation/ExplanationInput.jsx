@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { PaperPlaneRightIcon } from "@phosphor-icons/react";
+import { motion } from "motion/react";
+import { PaperPlaneRightIcon, StopIcon } from "@phosphor-icons/react";
 
-function ExplanationInput({ onSubmit }) {
+function ExplanationInput({ onSubmit, loading }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -28,9 +29,9 @@ function ExplanationInput({ onSubmit }) {
       />
       <button
         onClick={() => handleSubmit()}
-        className="btn-primary px-3 py-2 text-white"
+        className="btn-primary px-3 py-2 text-white shadow-none"
       >
-        <PaperPlaneRightIcon size={22} />
+        {loading ? <StopIcon size={22} /> : <PaperPlaneRightIcon size={22} />}
       </button>
     </div>
   );

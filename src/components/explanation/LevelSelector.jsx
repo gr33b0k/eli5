@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 
 const LEVELS = [
   { id: "eli5", label: "ELI5", description: "Like I'm 5" },
@@ -6,9 +7,16 @@ const LEVELS = [
   { id: "expert", label: "Expert", description: "I know the basics" },
 ];
 
-function LevelSelector({ level, onChange }) {
+function LevelSelector({ level, onChange, ...props }) {
   return (
-    <div className="glass relative flex self-center rounded-4xl p-1">
+    <motion.div
+      {...props}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0 }}
+      transition={{ duration: 0.3 }}
+      className="glass relative flex self-center rounded-4xl p-1"
+    >
       <span
         className="bg-accent shadow-primary/50 shadow-even absolute top-1 bottom-1 rounded-4xl p-2 transition-transform duration-300 ease-in-out"
         style={{
@@ -33,7 +41,7 @@ function LevelSelector({ level, onChange }) {
           </span>
         </button>
       ))}
-    </div>
+    </motion.div>
   );
 }
 
