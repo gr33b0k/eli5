@@ -26,4 +26,4 @@ dist-ssr
 # Environment 
 .env
 
-server/src/generated/prisma
+*/generated/prisma
