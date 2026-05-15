@@ -1,4 +1,3 @@
-import { NotePencilIcon } from "@phosphor-icons/react";
 import ChatList from "./ChatList";
 
 function Sidebar() {

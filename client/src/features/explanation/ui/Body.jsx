@@ -1,4 +1,4 @@
-import ContentSection from "./ContentSection";
+import Section from "./Section";
 
 import { motion } from "motion/react";
 
@@ -14,7 +14,7 @@ const container = {
   },
 };
 
-function Explanation({ content }) {
+function Body({ content }) {
   return (
     <>
       <motion.div
@@ -23,11 +23,11 @@ function Explanation({ content }) {
         className="glass custom-scrollbar relative flex h-full flex-col overflow-y-auto rounded-3xl"
       >
         {content.sections.map(({ type, content }) => (
-          <ContentSection key={type} type={type} content={content} />
+          <Section key={type} type={type} content={content} />
         ))}
       </motion.div>
     </>
   );
 }
 
-export default Explanation;
+export default Body;

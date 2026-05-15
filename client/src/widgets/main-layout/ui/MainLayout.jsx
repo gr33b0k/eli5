@@ -1,4 +1,4 @@
-import Sidebar from "./sidebar/Sidebar";
+import { Sidebar } from "@/widgets/sidebar";
 
 function MainLayout({ children }) {
   return (

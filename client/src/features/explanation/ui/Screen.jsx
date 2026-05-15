@@ -1,40 +1,15 @@
-import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import ContentCard from "../components/explanation/ContentCard";
-import ExplanationInput from "../components/explanation/ExplanationInput";
-import LevelSelector from "../components/explanation/LevelSelector";
+import Card from "./Card";
+import Input from "./Input";
+import LevelSelector from "./LevelSelector";
 
-const topics = [
-  "Quantum Mechanics",
-  "Blockchain",
-  "Photosynthesis",
-  "The Roman Empire",
-];
+import { useExplanation } from "../model/useExplanation";
+import { TOPICS } from "../lib/constants";
 
-function Home() {
-  const [query, setQuery] = useState("");
-  const [response, setResponse] = useState(null);
-  const [level, setLevel] = useState("eli5");
-  const [loading, setLoading] = useState(false);
-
-  const handleExplain = async (q) => {
-    setQuery(q);
-    setLoading(true);
-
-    const result = await fetch("http://localhost:3000/explain", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ query: q, level }),
-    });
-
-    const data = await result.json();
-
-    setResponse(data);
-    setLoading(false);
-  };
+function Screen() {
+  const { query, response, level, loading, setLevel, handleExplain } =
+    useExplanation();
 
   const hasQuery = !!query;
 
@@ -46,10 +21,7 @@ function Home() {
             <motion.h2
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{
-                opacity: 0,
-                y: -40,
-              }}
+              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.3 }}
               className="text-text text-center text-4xl font-bold"
             >
@@ -63,14 +35,11 @@ function Home() {
             <motion.ul
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{
-                opacity: 0,
-                y: -40,
-              }}
+              exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.3 }}
               className="text-text flex flex-wrap justify-center gap-2"
             >
-              {topics.map((topic) => (
+              {TOPICS.map((topic) => (
                 <li
                   key={topic}
                   onClick={() => handleExplain(topic)}
@@ -80,6 +49,7 @@ function Home() {
                 </li>
               ))}
             </motion.ul>
+
             <motion.div
               layoutId="input-shell"
               layout
@@ -95,11 +65,7 @@ function Home() {
 
             <AnimatePresence>
               {!hasQuery && (
-                <LevelSelector
-                  layout
-                  level={level}
-                  onChange={(level) => setLevel(level)}
-                />
+                <LevelSelector layout level={level} onChange={setLevel} />
               )}
             </AnimatePresence>
           </div>
@@ -110,6 +76,7 @@ function Home() {
         {hasQuery && (
           <>
             <ContentCard loading={loading} content={response} />
+
             <motion.div
               layoutId="input-shell"
               layout
@@ -124,4 +91,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Screen;

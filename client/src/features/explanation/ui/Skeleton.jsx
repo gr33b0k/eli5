@@ -1,4 +1,4 @@
-function ExplanationSkeleton() {
+function Skeleton() {
   return (
     <>
       <div className="flex animate-pulse items-center justify-between">
@@ -38,4 +38,4 @@ function ExplanationSkeleton() {
   );
 }
 
-export default ExplanationSkeleton;
+export default Skeleton;

@@ -23,7 +23,7 @@ const item = {
   },
 };
 
-function ContentSection({ type, content }) {
+function Section({ type, content }) {
   const Icon = ICONS[type];
 
   return (
@@ -41,4 +41,4 @@ function ContentSection({ type, content }) {
     </motion.section>
   );
 }
-export default ContentSection;
+export default Section;

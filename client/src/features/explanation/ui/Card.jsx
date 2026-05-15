@@ -1,8 +1,8 @@
-import Explanation from "./Explanation";
-import ExplanationSkeleton from "./ExplanationSkeleton";
-
 import { CopyIcon, ShareIcon } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "motion/react";
+
+import Body from "./Body";
+import Skeleton from "./Skeleton";
 
 const container = {
   hidden: {},
@@ -25,7 +25,7 @@ const item = {
   },
 };
 
-function ContentCard({ loading, content }) {
+function Card({ loading, content }) {
   return (
     <motion.article
       initial={{
@@ -56,7 +56,7 @@ function ContentCard({ loading, content }) {
             exit={{ opacity: 0 }}
             className="flex h-full flex-1 flex-col gap-4"
           >
-            <ExplanationSkeleton />
+            <Skeleton />
           </motion.div>
         ) : (
           <motion.div
@@ -79,7 +79,7 @@ function ContentCard({ loading, content }) {
                 </button>
               </div>
             </motion.div>
-            <Explanation content={content} />
+            <Body content={content} />
             <motion.div variants={container} className="flex gap-4">
               <motion.button
                 variants={item}
@@ -113,4 +113,4 @@ function ContentCard({ loading, content }) {
   );
 }
 
-export default ContentCard;
+export default Card;

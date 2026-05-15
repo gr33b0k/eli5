@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { motion } from "motion/react";
 import { PaperPlaneRightIcon, StopIcon } from "@phosphor-icons/react";
 
-function ExplanationInput({ onSubmit, loading }) {
+function Input({ onSubmit, loading }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -37,4 +36,4 @@ function ExplanationInput({ onSubmit, loading }) {
   );
 }
 
-export default ExplanationInput;
+export default Input;
