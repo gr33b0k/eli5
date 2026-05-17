@@ -1,7 +1,7 @@
-import Home from "../pages/home/Home.jsx";
+import { ChatPage } from "@/pages/chat";
 
 function App() {
-  return <Home />;
+  return <ChatPage />;
 }
 
 export default App;
