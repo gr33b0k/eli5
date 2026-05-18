@@ -23,7 +23,7 @@ function Explanation() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -40 }}
               transition={{ duration: 0.3 }}
-              className="text-text text-center text-4xl font-bold"
+              className="text-text font-syne text-center text-4xl font-bold"
             >
               Understand{" "}
               <span className="from-primary-active to-primary relative bg-linear-to-r bg-clip-text text-transparent italic">

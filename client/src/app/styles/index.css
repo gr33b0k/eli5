@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&family=Syne:wght@400..800&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -21,40 +22,47 @@
 
   /* Texts */
   --font-miranda: "Miranda Sans", sans-serif;
+  --font-syne: "Syne", sans-serif;
 
   /* Shadows */
   --shadow-even: 0px 0px 6px 1px rgba(0, 0, 0, 0.25);
 }
 
 @utility bg-gradient {
-  background-color: var(--color-white);
+  background-color: #ffffff;
   background-image:
-    radial-gradient(at 24% 74%, var(--color-primary) 0px, transparent 50%),
+    radial-gradient(
+      at 24% 74%,
+      --alpha(var(--color-primary) / 70%) 0px,
+      transparent 50%
+    ),
     radial-gradient(
       at 96% 93%,
-      oklch(from var(--color-primary) l c h / 0.8) 0px,
+      --alpha(var(--color-primary) / 70%) 0px,
       transparent 50%
     ),
     radial-gradient(
       at 92% 14%,
-      oklch(from var(--color-primary) l c h / 0.7) 0px,
+      --alpha(var(--color-primary) / 70%) 0px,
       transparent 50%
     ),
     radial-gradient(
       at 0% 0%,
-      oklch(from var(--color-primary) l c h / 0.7) 0px,
+      --alpha(var(--color-primary) / 40%) 0px,
       transparent 50%
     );
 }
 
-@utility glass {
-  @apply bg-surface/60 shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
+@utility glass-* {
+  background-color: --alpha(
+    var(--color-surface) / calc(--value(integer, --default(60)) * 1%)
+  );
+  @apply shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
 }
 
 @utility custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) transparent;
-  /* scrollbar-gutter: stable; */
 }
 
 @utility btn-primary {
