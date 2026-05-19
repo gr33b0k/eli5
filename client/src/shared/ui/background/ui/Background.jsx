@@ -4,14 +4,14 @@ import { useParallax } from "@/shared/lib";
 const ORBS_CONFIG = [
   { className: "-top-10 -left-10 h-40 w-40 blur-[1px]", delay: 0, depth: 0.3 },
   { className: "top-1/3 right-1/4 h-24 w-24 blur-xs", delay: 0.5, depth: 0.8 },
-  { className: "top-1/2 left-1/2 h-16 w-16 blur-[1px]", delay: 1, depth: 1.2 },
-  { className: "bottom-0 left-1/4 h-32 w-32 blur-sm", delay: 1.5, depth: 0.5 },
-  { className: "top-16 right-10 h-12 w-12 blur-[2px]", delay: 0.2, depth: 1.5 },
+  { className: "top-1/2 left-1/2 h-16 w-16 blur-[1px]", delay: 1, depth: 1.5 },
+  { className: "bottom-0 left-1/4 h-32 w-32 blur-sm", delay: 1.2, depth: 0.5 },
+  { className: "top-16 right-10 h-12 w-12 blur-[2px]", delay: 0.2, depth: 1.3 },
   {
     className: "right-1/3 bottom-20 h-8 w-8 blur-[2px]",
     delay: 0.7,
     depth: 2.2,
-  }, // Мелкий, высокая скорость
+  },
   {
     className: "top-1/4 left-[15%] h-20 w-20 blur-[1px]",
     delay: 1.2,
