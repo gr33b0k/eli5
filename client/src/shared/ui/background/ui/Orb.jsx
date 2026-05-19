@@ -1,24 +1,47 @@
-import { motion, useTransform } from "framer-motion";
+import { motion, useTransform } from "motion/react";
 
-export function Orb({ parallaxX, parallaxY, className, delay = 0, depth = 1 }) {
-  // Умножаем базовое смещение на индивидуальный коэффициент глубины шара
-  const mouseX = useTransform(parallaxX, (v) => v * depth);
-  const mouseY = useTransform(parallaxY, (v) => v * depth);
+export function Orb({ parallaxX, parallaxY, orb }) {
+  const mouseX = useTransform(parallaxX, (v) => v * orb.depth);
+  const mouseY = useTransform(parallaxY, (v) => v * orb.depth);
 
   return (
     <motion.div
-      className={`orb absolute ${className}`}
-      animate={{ y: [0, 10, 0] }}
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{
-        repeat: Infinity,
-        duration: 4,
-        delay,
-        ease: "easeInOut", // Делаем idle-анимацию покачивания более плавной
+        duration: 1,
+        delay: orb.delay,
+        type: "spring",
+        stiffness: 120,
+        damping: 18,
       }}
       style={{
+        top: orb.y !== "auto" ? orb.y : undefined,
+        left: orb.x !== "auto" ? orb.x : undefined,
+        right: orb.right || undefined,
+        bottom: orb.bottom || undefined,
         x: mouseX,
         y: mouseY,
       }}
-    />
+      className="absolute z-0"
+    >
+      <motion.div
+        animate={{
+          y: [0, -15, 0],
+        }}
+        transition={{
+          duration: 6 + orb.depth * 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          height: orb.size,
+          filter: `blur(${orb.blur})`,
+        }}
+        className="orb aspect-square rounded-full"
+      />
+    </motion.div>
   );
 }
+
+export default Orb;

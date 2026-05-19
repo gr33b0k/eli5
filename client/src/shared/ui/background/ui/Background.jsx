@@ -1,43 +1,19 @@
 import { Orb } from "./Orb";
 import { useParallax } from "@/shared/lib";
 
-const ORBS_CONFIG = [
-  { className: "-top-10 -left-10 h-40 w-40 blur-[1px]", delay: 0, depth: 0.3 },
-  { className: "top-1/3 right-1/4 h-24 w-24 blur-xs", delay: 0.5, depth: 0.8 },
-  { className: "top-1/2 left-1/2 h-16 w-16 blur-[1px]", delay: 1, depth: 1.5 },
-  { className: "bottom-0 left-1/4 h-32 w-32 blur-sm", delay: 1.2, depth: 0.5 },
-  { className: "top-16 right-10 h-12 w-12 blur-[2px]", delay: 0.2, depth: 1.3 },
-  {
-    className: "right-1/3 bottom-20 h-8 w-8 blur-[2px]",
-    delay: 0.7,
-    depth: 2.2,
-  },
-  {
-    className: "top-1/4 left-[15%] h-20 w-20 blur-[1px]",
-    delay: 1.2,
-    depth: 1.0,
-  },
-  {
-    className: "top-[60%] left-[8%] h-10 w-10 blur-[2px]",
-    delay: 0.4,
-    depth: 1.8,
-  },
-  {
-    className: "right-10 bottom-[-5%] h-36 w-36 blur-[3px]",
-    delay: 1.8,
-    depth: 0.4,
-  },
-  {
-    className: "right-[12%] bottom-[30%] h-16 w-16 blur-[1px]",
-    delay: 0.9,
-    depth: 1.1,
-  },
-  { className: "top-12 left-1/3 h-6 w-6 blur-[1px]", delay: 1.1, depth: 2.8 },
-  {
-    className: "top-1/2 right-[5%] h-5 w-5 blur-[2px]",
-    delay: 0.3,
-    depth: 3.0,
-  },
+export const ORBS_CONFIG = [
+  { x: "-4%", y: "-4%", size: 160, blur: "1px", delay: 0, depth: 0.3 },
+  { x: "75%", y: "33%", size: 100, blur: "2px", delay: 0.5, depth: 0.8 },
+  { x: "50%", y: "50%", size: 60, blur: "1px", delay: 1, depth: 1.5 },
+  { x: "25%", y: "80%", size: 130, blur: "4px", delay: 1.2, depth: 0.5 },
+  { x: "85%", y: "10%", size: 48, blur: "2px", delay: 0.2, depth: 1.3 },
+  { x: "63%", y: "85%", size: 32, blur: "2px", delay: 0.7, depth: 2.2 },
+  { x: "15%", y: "25%", size: 80, blur: "1px", delay: 1.2, depth: 1.0 },
+  { x: "8%", y: "60%", size: 40, blur: "2px", delay: 0.4, depth: 1.8 },
+  { x: "92%", y: "95%", size: 144, blur: "8px", delay: 1.8, depth: 0.4 },
+  { x: "84%", y: "65%", size: 64, blur: "1px", delay: 0.9, depth: 1.1 },
+  { x: "33%", y: "5%", size: 24, blur: "1px", delay: 1.1, depth: 2.8 },
+  { x: "93%", y: "50%", size: 20, blur: "2px", delay: 0.3, depth: 3.0 },
 ];
 
 function Background({ className, children }) {
@@ -54,9 +30,7 @@ function Background({ className, children }) {
             key={index}
             parallaxX={parallaxX}
             parallaxY={parallaxY}
-            className={orb.className}
-            delay={orb.delay}
-            depth={orb.depth}
+            orb={orb}
           />
         ))}
       </div>
