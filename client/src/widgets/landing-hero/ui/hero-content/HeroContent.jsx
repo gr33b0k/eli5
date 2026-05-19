@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useNavigate } from "react-router";
 
 import HeroLevels from "./HeroLevels";
 
@@ -8,21 +9,6 @@ const container = {
     transition: {
       staggerChildren: 0.12,
       delayChildren: 0.2,
-    },
-  },
-};
-
-const slideUp = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -43,6 +29,8 @@ const slideDown = {
 };
 
 function HeroContent() {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       variants={container}
@@ -97,6 +85,7 @@ function HeroContent() {
           delay: 0.6,
           ease: [0.22, 1, 0.36, 1],
         }}
+        onClick={() => navigate("/auth")}
         className="btn-primary mt-2 rounded-full px-6 py-3"
       >
         Start for free →
