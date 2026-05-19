@@ -54,10 +54,14 @@
 }
 
 @utility glass-* {
+  --glass-weight: --value(integer, --default(60));
+
   background-color: --alpha(
-    var(--color-surface) / calc(--value(integer, --default(60)) * 1%)
+    var(--color-surface) / calc(var(--glass-weight) * 1%)
   );
-  @apply shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80 backdrop-blur-md;
+  backdrop-filter: blur(calc(var(--glass-weight) * 0.2px));
+
+  @apply shadow-primary/50 inset-shadow-surface shadow-sm inset-shadow-sm/80;
 }
 
 @utility custom-scrollbar {
