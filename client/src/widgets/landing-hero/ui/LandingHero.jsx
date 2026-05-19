@@ -1,7 +1,6 @@
 import HeroScene from "./hero-scene/HeroScene";
 
-import { useParallax } from "../model/useParallax";
-import LevelSelector from "../../../features/explanation/ui/LevelSelector";
+import { useParallax } from "@/shared/lib";
 import HeroContent from "./hero-content/HeroContent";
 
 function LandingHero() {
