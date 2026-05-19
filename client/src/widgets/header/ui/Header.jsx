@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 import { Logo } from "@/shared/ui";
 
-function Header() {
+function Header({ children }) {
   return (
     <motion.header
       initial={{
@@ -22,7 +22,7 @@ function Header() {
     >
       <Logo />
 
-      <button className="btn-primary">Get started</button>
+      {children}
     </motion.header>
   );
 }
