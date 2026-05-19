@@ -1,11 +1,29 @@
+import { motion } from "motion/react";
+
+const item = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.25,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 function HeroLevel({ title, text, isActive, onClick, children }) {
   return (
-    <button
+    <motion.button
+      variants={item}
       onClick={onClick}
-      className={`flex w-1/3 cursor-pointer items-center gap-3 rounded-3xl p-4 pr-7 transition-all ${
+      className={`flex w-1/3 cursor-pointer items-center gap-3 rounded-3xl p-4 pr-7 transition-colors ${
         isActive
           ? "glass inset-shadow-accent bg-primary"
-          : "glass-10 hover:glass-20"
+          : "glass-5 hover:glass-20"
       } `}
     >
       <div
@@ -27,7 +45,7 @@ function HeroLevel({ title, text, isActive, onClick, children }) {
           {text}
         </span>
       </div>
-    </button>
+    </motion.button>
   );
 }
 

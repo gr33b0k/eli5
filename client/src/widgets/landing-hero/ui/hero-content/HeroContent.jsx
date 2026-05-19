@@ -1,37 +1,107 @@
-import LevelSelector from "../../../../features/explanation/ui/LevelSelector";
+import { motion } from "motion/react";
+
 import HeroLevels from "./HeroLevels";
+
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const slideUp = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const slideDown = {
+  hidden: {
+    opacity: 0,
+    y: -30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 function HeroContent() {
   return (
-    <div className="relative z-10 flex max-w-7/8 flex-col gap-4">
-      <div className="glass mb-2 flex w-fit items-center gap-2 rounded-full px-5 py-2">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className="relative z-10 flex max-w-7/8 flex-col gap-4"
+    >
+      <motion.div
+        variants={slideDown}
+        className="glass mb-2 flex w-fit items-center gap-2 rounded-full px-5 py-2"
+      >
         <div className="bg-accent h-2 w-2 animate-pulse rounded-full" />
 
         <span className="text-text-muted text-sm font-medium">
           Smart explanations for every mind
         </span>
-      </div>
+      </motion.div>
 
-      <h1 className="font-syne text-text text-6xl leading-none font-black">
+      <motion.h1
+        variants={slideDown}
+        className="font-syne text-text text-6xl leading-none font-black"
+      >
         Understand{" "}
         <span className="from-primary-active to-primary bg-linear-to-r bg-clip-text text-transparent italic">
           anything
         </span>{" "}
         <br />
         at your level
-      </h1>
+      </motion.h1>
 
-      <p className="text-text-muted text-lg leading-relaxed">
+      <motion.p
+        variants={slideDown}
+        className="text-text-muted text-lg leading-relaxed"
+      >
         ELI5 breaks down complex topics into beautifully simple explanations
         tailored to how you think and learn.
-      </p>
+      </motion.p>
 
       <HeroLevels />
 
-      <button className="btn-primary mt-2 rounded-full px-6 py-3 transition-all duration-300">
+      <motion.button
+        initial={{
+          opacity: 0,
+          y: 10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.5,
+          delay: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="btn-primary mt-2 rounded-full px-6 py-3"
+      >
         Start for free →
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 }
 

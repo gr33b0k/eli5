@@ -4,6 +4,7 @@ import {
   TreeStructureIcon,
 } from "@phosphor-icons/react";
 
+import { motion } from "motion/react";
 import brain from "../../assets/brain.png";
 
 import HeroOrbs from "./HeroOrbs";
@@ -21,6 +22,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           parallaxY={parallaxY}
           top={0}
           left={5}
+          delay={0.3}
         >
           <ChatIcon size={24} className="text-accent" />
         </FloatingCard>
@@ -31,6 +33,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           parallaxY={parallaxY}
           top={20}
           left={80}
+          delay={0.5}
         >
           <TreeStructureIcon size={24} className="text-accent" />
         </FloatingCard>
@@ -41,10 +44,20 @@ function HeroScene({ parallaxX, parallaxY }) {
           parallaxY={parallaxY}
           top={60}
           left={15}
+          delay={0.7}
         >
           <SlidersHorizontalIcon size={24} className="text-accent" />
         </FloatingCard>
-        <img
+        <motion.img
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.9,
+          }}
           src={brain}
           alt="Brain"
           className="relative z-10 block h-[min(70vh,600px)] w-auto object-contain drop-shadow-[0_0_70px_#ffffff50]"

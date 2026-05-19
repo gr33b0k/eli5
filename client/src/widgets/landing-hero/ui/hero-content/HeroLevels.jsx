@@ -1,8 +1,13 @@
-import { BabyIcon, FlaskIcon, RocketLaunchIcon } from "@phosphor-icons/react";
-import HeroLevel from "./HeroLevel";
-import { SlidersHorizontalIcon } from "@phosphor-icons/react";
-import LevelSelector from "../../../../features/explanation/ui/LevelSelector";
+import {
+  BabyIcon,
+  FlaskIcon,
+  RocketLaunchIcon,
+  SlidersHorizontalIcon,
+} from "@phosphor-icons/react";
 import { useState } from "react";
+import { motion } from "motion/react";
+
+import HeroLevel from "./HeroLevel";
 
 const LEVELS = [
   {
@@ -26,11 +31,29 @@ const LEVELS = [
   },
 ];
 
+const container = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      delay: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
+  },
+};
+
 function HeroLevels() {
   const [activeLevel, setActiveLevel] = useState("eli5");
 
   return (
-    <div className="glass-30 w-full rounded-4xl p-4">
+    <motion.div
+      variants={container}
+      className="glass-20 w-full rounded-4xl p-4"
+    >
       <h3 className="text-text mb-4 flex items-center gap-2 text-lg font-semibold">
         <SlidersHorizontalIcon size={24} className="" /> Choose your level:
       </h3>
@@ -55,7 +78,7 @@ function HeroLevels() {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

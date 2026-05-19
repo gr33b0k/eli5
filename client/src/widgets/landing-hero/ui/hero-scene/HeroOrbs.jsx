@@ -12,25 +12,42 @@ function HeroOrbs({ parallaxX, parallaxY }) {
         return (
           <motion.div
             key={index}
+            initial={{
+              opacity: 0,
+              scale: 0,
+              filter: "blur(5px)",
+            }}
             animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
+              opacity: 1,
+              scale: 1,
+              filter: "blur(0px)",
             }}
             transition={{
-              duration: 8 + orb.depth * 10,
-              repeat: Infinity,
-              ease: "easeInOut",
+              duration: 1,
+              delay: index * 0.1,
+              type: "spring",
+              stiffness: 120,
+              damping: 18,
             }}
             style={{
               left: orb.x,
               top: orb.y,
+              x: mouseX,
+              y: mouseY,
             }}
             className={`absolute ${orb.layer === "front" ? "z-20" : "z-0"}`}
           >
             <motion.div
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+              }}
+              transition={{
+                duration: 8 + orb.depth * 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               style={{
-                x: mouseX,
-                y: mouseY,
                 height: orb.size,
               }}
               className="orb aspect-square rounded-full"
