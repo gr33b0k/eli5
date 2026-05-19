@@ -1,11 +1,15 @@
-import { MainLayout } from "@/widgets/main-layout";
+import { Sidebar } from "@/widgets/sidebar";
 import { Explanation } from "@/features/explanation";
+import { Background } from "@/shared/ui/background";
 
 function Chat() {
   return (
-    <MainLayout>
-      <Explanation />
-    </MainLayout>
+    <Background className="relative flex h-screen overflow-hidden p-4">
+      <Sidebar />
+      <main className="relative ml-4 flex h-full flex-1 flex-col gap-4 overflow-hidden rounded-4xl">
+        <Explanation />
+      </main>
+    </Background>
   );
 }
 
