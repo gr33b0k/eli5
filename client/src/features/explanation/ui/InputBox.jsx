@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PaperPlaneRightIcon, StopIcon } from "@phosphor-icons/react";
 
-function Input({ onSubmit, loading }) {
+function InputBox({ onSubmit, loading }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -36,4 +36,4 @@ function Input({ onSubmit, loading }) {
   );
 }
 
-export default Input;
+export default InputBox;

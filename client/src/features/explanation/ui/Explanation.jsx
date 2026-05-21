@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 
 import Card from "./Card";
-import Input from "./Input";
+import InputBox from "./InputBox";
 import LevelSelector from "./LevelSelector";
 
 import { useExplanation } from "../hooks/useExplanation";
@@ -60,7 +60,7 @@ function Explanation() {
               }}
               className="mx-auto w-full max-w-2xl"
             >
-              <Input onSubmit={handleExplain} loading={loading} />
+              <InputBox onSubmit={handleExplain} loading={loading} />
             </motion.div>
 
             <AnimatePresence>
@@ -82,7 +82,7 @@ function Explanation() {
               layout
               className="glass rounded-4xl p-3"
             >
-              <Input onSubmit={handleExplain} loading={loading} />
+              <InputBox onSubmit={handleExplain} loading={loading} />
             </motion.div>
           </>
         )}
