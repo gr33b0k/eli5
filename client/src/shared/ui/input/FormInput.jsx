@@ -1,4 +1,4 @@
-import { EyeClosedIcon, EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
+import { EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 
 function FormInput({ className = "", iconLeft, error, ...props }) {
@@ -15,7 +15,7 @@ function FormInput({ className = "", iconLeft, error, ...props }) {
   return (
     <div className="flex w-full flex-col gap-1.5">
       <div
-        className={`glass-10 text-text focus-within:shadow-even flex items-center gap-3 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out ${error ? "focus-within:shadow-error/50 bg-error/10" : "focus-within:shadow-primary"} ${className} `}
+        className={`glass-60 text-text focus-within:shadow-even flex items-center gap-3 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out ${error ? "focus-within:shadow-error/50 bg-error/10" : "focus-within:shadow-primary"} ${className} `}
       >
         {iconLeft && (
           <div className="text-text flex shrink-0 items-center justify-center">

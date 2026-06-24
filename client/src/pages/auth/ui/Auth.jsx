@@ -1,10 +1,13 @@
 import { Header } from "@/widgets/header";
+import Background from "@/shared/ui/background/ui/Background";
+import AuthCard from "@/features/auth/ui/AuthCard";
 
 function Auth() {
   return (
-    <div className="bg-gradient relative flex h-screen flex-col overflow-hidden p-4">
+    <Background className="flex h-screen flex-col overflow-hidden p-4">
       <Header />
-    </div>
+      <AuthCard />
+    </Background>
   );
 }
 
