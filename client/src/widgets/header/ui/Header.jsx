@@ -16,7 +16,7 @@ function Header({ children }) {
         filter: "blur(0px)",
       }}
       transition={{
-        duration: 0.8,
+        duration: 0.5,
       }}
       className="flex w-full justify-between rounded-4xl px-10 py-5"
     >
