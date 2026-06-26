@@ -6,7 +6,7 @@ import { prisma } from "../../lib/prisma.js";
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function register(data) {
-  const { firstName, lastName, username, email, password } = data;
+  const { username, email, password } = data;
 
   const existingUser = await prisma.user.findFirst({
     where: {
@@ -20,16 +20,12 @@ export async function register(data) {
 
   const user = await prisma.user.create({
     data: {
-      firstName,
-      lastName,
       username,
       email,
       password: hashedPassword,
     },
     select: {
       id: true,
-      firstName: true,
-      lastName: true,
       username: true,
       email: true,
     },
