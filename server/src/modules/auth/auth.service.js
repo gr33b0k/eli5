@@ -69,3 +69,16 @@ export async function login(data) {
 
   return { user: userNoPassword, token };
 }
+
+export async function me(userId) {
+  return prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+    },
+  });
+}

@@ -1,4 +1,4 @@
-import { register, login } from "./auth.service.js";
+import { me, register, login } from "./auth.service.js";
 
 export async function registerController(req, res) {
   try {
@@ -33,6 +33,24 @@ export async function loginController(req, res) {
     return res.json({ user });
   } catch (error) {
     return res.status(400).json({
+      error: error.message,
+    });
+  }
+}
+
+export async function meController(req, res) {
+  try {
+    const user = await me(req.user.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({
       error: error.message,
     });
   }
