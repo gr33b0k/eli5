@@ -1,13 +1,18 @@
+import { useState } from "react";
+import { motion } from "motion/react";
+
 import { EnvelopeSimpleIcon, KeyIcon, UserIcon } from "@phosphor-icons/react";
 import { FormInput } from "@/shared/ui/input";
 
 function AuthForm({ mode = "login" }) {
+  const [remember, setRemember] = useState(false);
+
   const isLogin = mode === "login";
   const title = isLogin ? "Login" : "Register";
   const buttonText = isLogin ? "Sign in" : "Sign up";
 
   return (
-    <form layout className="flex w-full flex-col gap-6">
+    <form className="flex w-full flex-col gap-6">
       <h2 className="text-text text-center text-3xl font-black">{title}</h2>
 
       <div className="flex flex-col gap-4">
@@ -20,7 +25,7 @@ function AuthForm({ mode = "login" }) {
         )}
 
         <FormInput
-          type="text"
+          type={isLogin ? "text" : "email"}
           placeholder={isLogin ? "Username or Email" : "Email"}
           iconLeft={<EnvelopeSimpleIcon weight="bold" size={18} />}
         />

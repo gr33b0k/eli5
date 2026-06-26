@@ -6,42 +6,55 @@ import { Logo } from "@/shared/ui";
 import AuthForm from "./AuthForm";
 
 function AuthCard() {
-  const [authType, setAuthType] = useState("login");
+  const [mode, setMode] = useState("login");
 
   return (
-    <div className="flex h-full items-center justify-center">
-      <div
-        layout
-        className="glass-10 flex w-100 flex-col items-center justify-center gap-6 rounded-3xl p-8"
-      >
-        <AuthForm mode={authType} />
-        <div className="text-text-muted text-sm">
-          {authType === "login" ? (
-            <p>
-              Don’t have an account yet?{" "}
-              <button
-                type="button"
-                className="text-accent cursor-pointer hover:underline"
-                onClick={() => setAuthType("register")}
-              >
-                Sign up
-              </button>
-            </p>
-          ) : (
-            <p>
-              Already have an account?{" "}
-              <button
-                type="button"
-                className="text-accent cursor-pointer hover:underline"
-                onClick={() => setAuthType("login")}
-              >
-                Sign in
-              </button>
-            </p>
-          )}
-        </div>
+    <motion.div
+      key={mode}
+      initial={{
+        opacity: 0,
+        y: -5,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      exit={{
+        opacity: 0,
+        y: 5,
+      }}
+      transition={{
+        duration: 0.3,
+      }}
+      className="glass-10 flex w-100 flex-col items-center justify-center gap-6 rounded-3xl p-8"
+    >
+      <AuthForm mode={mode} />
+      <div className="text-text-muted text-sm">
+        {mode === "login" ? (
+          <p>
+            Don’t have an account yet?{" "}
+            <button
+              type="button"
+              className="text-accent cursor-pointer hover:underline"
+              onClick={() => setMode("register")}
+            >
+              Sign up
+            </button>
+          </p>
+        ) : (
+          <p>
+            Already have an account?{" "}
+            <button
+              type="button"
+              className="text-accent cursor-pointer hover:underline"
+              onClick={() => setMode("login")}
+            >
+              Sign in
+            </button>
+          </p>
+        )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

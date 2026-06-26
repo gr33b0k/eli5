@@ -5,8 +5,10 @@ import AuthCard from "@/features/auth/ui/AuthCard";
 function Auth() {
   return (
     <Background className="flex h-screen flex-col overflow-hidden p-4">
-      <Header />
-      <AuthCard />
+      <Header animate={false} />
+      <div className="flex h-full items-center justify-center">
+        <AuthCard />
+      </div>
     </Background>
   );
 }
