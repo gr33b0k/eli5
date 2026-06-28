@@ -38,6 +38,12 @@ export async function loginController(req, res) {
   }
 }
 
+export async function logoutController(req, res) {
+  res.clearCookie("token");
+
+  res.json({ success: true });
+}
+
 export async function meController(req, res) {
   try {
     const user = await me(req.user.userId);
