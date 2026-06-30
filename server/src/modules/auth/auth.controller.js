@@ -11,7 +11,7 @@ export async function registerController(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json({ user });
+    return res.json(user);
   } catch (error) {
     return res.status(400).json({
       error: error.message,
@@ -30,7 +30,7 @@ export async function loginController(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json({ user });
+    return res.json(user);
   } catch (error) {
     return res.status(400).json({
       error: error.message,
