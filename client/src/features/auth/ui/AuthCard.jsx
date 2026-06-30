@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 
-import { useUserStore } from "@/entities/user";
+import { useUserStore, login, register } from "@/entities/user";
 import { Logo } from "@/shared/ui";
 
-import { login, register } from "../api/authApi";
 import AuthForm from "./AuthForm";
 
 function AuthCard() {
