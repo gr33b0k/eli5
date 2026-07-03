@@ -79,7 +79,7 @@ export async function explain(req, res) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "openai/gpt-oss-120b:free",
+      model: "nvidia/nemotron-3-ultra-550b-a55b:free",
       messages,
       temperature: 0.7,
     }),
