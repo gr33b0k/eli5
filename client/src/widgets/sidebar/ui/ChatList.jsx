@@ -1,4 +1,4 @@
-function ChatList({ chats }) {
+function ChatList({ chats, activeChat, onClick }) {
   return (
     <ul className="custom-scrollbar flex flex-col gap-1 overflow-y-auto px-4">
       {chats.map((chat, index) => (
@@ -6,8 +6,9 @@ function ChatList({ chats }) {
           key={chat.id}
           className={
             "text-text cursor-pointer rounded-4xl px-3 py-2 transition-colors duration-300 ease-in-out " +
-            (chat.isActive ? "glass-50" : "hover:bg-surface/60")
+            (chat.id === activeChat ? "glass-50" : "hover:bg-surface/60")
           }
+          onClick={() => onClick(chat.id)}
         >
           {chat.title}
         </li>
