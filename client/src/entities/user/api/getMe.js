@@ -5,7 +5,9 @@ export async function getMe() {
 
   if (response.status === 401) return null;
 
-  if (!response.ok) throw new Error("Server error");
+  const result = await response.json();
 
-  return response.json();
+  if (!response.ok) throw new Error(result.error);
+
+  return result;
 }
