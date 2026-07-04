@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useChatStore, sendMessage } from "@/entities/chat";
+import { useChatStore, createChat, sendMessage } from "@/entities/chat";
 
 export function useExplanation() {
   const [query, setQuery] = useState("");
@@ -8,14 +8,24 @@ export function useExplanation() {
   const [level, setLevel] = useState("eli5");
   const [loading, setLoading] = useState(false);
 
-  const activeChatId = useChatStore((state) => state.activeChatId);
+  const addChat = useChatStore((state) => state.addChat);
+  const setActiveChat = useChatStore((state) => state.setActiveChat);
+  let chatId = useChatStore((state) => state.activeChatId);
 
   const handleExplain = async (q) => {
     setQuery(q);
     setLoading(true);
 
+    if (!chatId) {
+      const chat = await createChat();
+      addChat(chat);
+      setActiveChat(chat.id);
+
+      chatId = chat.id;
+    }
+
     try {
-      const data = await sendMessage(activeChatId, q, level);
+      const data = await sendMessage(chatId, q, level);
       setAssistantMessage(data.content);
     } finally {
       setLoading(false);
