@@ -15,7 +15,7 @@ function LevelSelector({ level, onChange, ...props }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0 }}
       transition={{ duration: 0.3 }}
-      className="glass relative flex self-center rounded-4xl p-1"
+      className="glass-40 relative flex self-center rounded-4xl p-1"
     >
       <span
         className="bg-accent shadow-primary/50 shadow-even absolute top-1 bottom-1 rounded-4xl p-2 transition-transform duration-300 ease-in-out"

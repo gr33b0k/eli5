@@ -12,13 +12,13 @@ function InputBox({ onSubmit, loading }) {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter" && onSubmit) {
+    if (e.key === "Enter") {
       handleSubmit();
     }
   };
 
   return (
-    <div className="glass text-text focus-within:shadow-primary focus-within:shadow-even flex gap-2 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out">
+    <div className="glass-40 text-text focus-within:shadow-primary focus-within:shadow-even flex gap-2 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out">
       <input
         value={value}
         onKeyDown={handleKeyDown}
@@ -27,7 +27,7 @@ function InputBox({ onSubmit, loading }) {
         placeholder="What topic do you want to break down?"
       />
       <button
-        onClick={() => handleSubmit()}
+        onClick={handleSubmit}
         className="btn-primary px-3 py-2 text-white shadow-none"
       >
         {loading ? <StopIcon size={22} /> : <PaperPlaneRightIcon size={22} />}

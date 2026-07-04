@@ -12,7 +12,6 @@ function AuthCard() {
   const [mode, setMode] = useState("login");
 
   async function handleAuth(data) {
-    console.log(data);
     if (mode === "login") {
       const user = await login({
         username: data.email,

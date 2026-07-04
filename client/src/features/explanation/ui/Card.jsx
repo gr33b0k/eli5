@@ -45,7 +45,7 @@ function Card({ loading, content }) {
         stiffness: 225,
         damping: 25,
       }}
-      className="glass text-text h-full min-h-0 rounded-4xl p-5"
+      className="glass-50 text-text h-full min-h-0 rounded-4xl p-5"
     >
       <AnimatePresence mode="wait">
         {loading ? (

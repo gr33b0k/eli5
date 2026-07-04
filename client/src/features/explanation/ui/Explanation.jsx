@@ -8,7 +8,7 @@ import { useExplanation } from "../hooks/useExplanation";
 import { TOPICS } from "../lib/constants";
 
 function Explanation() {
-  const { query, response, level, loading, setLevel, handleExplain } =
+  const { query, assistantMessage, level, loading, setLevel, handleExplain } =
     useExplanation();
 
   const hasQuery = !!query;
@@ -43,7 +43,7 @@ function Explanation() {
                 <li
                   key={topic}
                   onClick={() => handleExplain(topic)}
-                  className="glass cursor-pointer rounded-4xl px-3 py-2"
+                  className="glass-40 cursor-pointer rounded-4xl px-3 py-2"
                 >
                   {topic}
                 </li>
@@ -75,7 +75,7 @@ function Explanation() {
       <AnimatePresence>
         {hasQuery && (
           <>
-            <Card loading={loading} content={response} />
+            <Card loading={loading} content={assistantMessage} />
 
             <motion.div
               layoutId="input-shell"

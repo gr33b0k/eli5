@@ -16,17 +16,15 @@ const container = {
 
 function Body({ content }) {
   return (
-    <>
-      <motion.div
-        layout
-        variants={container}
-        className="glass custom-scrollbar relative flex h-full flex-col overflow-y-auto rounded-3xl"
-      >
-        {content.sections.map(({ type, content }) => (
-          <Section key={type} type={type} content={content} />
-        ))}
-      </motion.div>
-    </>
+    <motion.div
+      layout
+      variants={container}
+      className="glass custom-scrollbar relative flex h-full flex-col overflow-y-auto rounded-3xl"
+    >
+      {content.sections.map(({ type, content }) => (
+        <Section key={type} type={type} content={content} />
+      ))}
+    </motion.div>
   );
 }
 
