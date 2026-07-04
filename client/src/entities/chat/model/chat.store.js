@@ -7,4 +7,8 @@ export const useChatStore = create((set) => ({
   setChats: (chats) => set({ chats }),
   setActiveChat: (id) => set({ activeChatId: id }),
   addChat: (chat) => set((state) => ({ chats: [chat, ...state.chats] })),
+  removeChat: (chatId) =>
+    set((state) => ({
+      chats: state.chats.filter((chat) => chat.id !== chatId),
+    })),
 }));

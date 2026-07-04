@@ -1,9 +1,8 @@
-import { useUserStore } from "../../../entities/user";
 import ChatList from "./ChatList";
 import UserCard from "./UserCard";
 
-import { logout } from "@/entities/user";
-import { useChatStore, createChat, getChats } from "@/entities/chat";
+import { useUserStore, logout } from "@/entities/user";
+import { useChatStore, createChat, deleteChat } from "@/entities/chat";
 
 import { Logo } from "@/shared/ui";
 
@@ -14,12 +13,17 @@ function Sidebar() {
   const chats = useChatStore((state) => state.chats);
   const activeChat = useChatStore((state) => state.activeChatId);
   const addChat = useChatStore((state) => state.addChat);
-  const setChats = useChatStore((state) => state.setChats);
+  const removeChat = useChatStore((state) => state.removeChat);
   const setActiveChat = useChatStore((state) => state.setActiveChat);
 
   async function handleCreateChat() {
     const chat = await createChat();
     addChat(chat);
+  }
+
+  async function handleDeleteChat(chatId) {
+    await deleteChat(chatId);
+    removeChat(chatId);
   }
 
   async function handleLogout() {
@@ -40,7 +44,8 @@ function Sidebar() {
         <ChatList
           chats={chats}
           activeChat={activeChat}
-          onClick={setActiveChat}
+          onSelect={setActiveChat}
+          onDelete={handleDeleteChat}
         />
       </div>
       {user && <UserCard user={user} onLogout={handleLogout} />}

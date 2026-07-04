@@ -31,6 +31,17 @@ export async function getChat(req, res) {
   }
 }
 
+export async function deleteChat(req, res) {
+  try {
+    const userId = req.user.userId;
+    const chatId = req.params.id;
+    await chatService.deleteChat(chatId, userId);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete chat" });
+  }
+}
+
 export async function sendMessage(req, res) {
   try {
     const userId = req.user.userId;
