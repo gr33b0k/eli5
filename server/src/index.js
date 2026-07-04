@@ -2,9 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-
-import aiRoutes from "./modules/ai/ai.routes.js";
 import authRoutes from "./modules/auth/auth.routes.js";
+import chatRoutes from "./modules/chat/chat.routes.js";
 
 const app = express();
 
@@ -17,8 +16,8 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/", aiRoutes);
 app.use("/auth", authRoutes);
+app.use("/chat", chatRoutes);
 
 app.listen(3000, () => {
   console.log("Server started");
