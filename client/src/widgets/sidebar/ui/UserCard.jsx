@@ -5,7 +5,7 @@ function UserCard({ user, onLogout }) {
     <div className="glass-40 flex min-h-19.5 items-center justify-between rounded-4xl px-7 py-4">
       <div className="flex items-center gap-3">
         <span className="bg-accent text-surface font-miranda flex h-10 w-10 items-center justify-center rounded-full text-xl">
-          {user.username[0]}
+          {user.username[0].toUpperCase()}
         </span>
         <p className="text-text">{user.username}</p>
       </div>
