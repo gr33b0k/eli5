@@ -66,6 +66,28 @@ export async function deleteChat(chatId, userId) {
   });
 }
 
+export async function renameChat(chatId, userId, newTitle) {
+  const chat = await prisma.chat.findFirst({
+    where: {
+      id: chatId,
+      userId,
+    },
+  });
+
+  if (!chat) {
+    throw new Error("Chat not found");
+  }
+
+  await prisma.chat.update({
+    where: {
+      id: chatId,
+    },
+    data: {
+      title: newTitle,
+    },
+  });
+}
+
 export async function sendMessage(chatId, userId, query, level) {
   const chat = await prisma.chat.findFirst({
     where: {

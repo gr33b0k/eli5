@@ -11,4 +11,10 @@ export const useChatStore = create((set) => ({
     set((state) => ({
       chats: state.chats.filter((chat) => chat.id !== chatId),
     })),
+  changeChatName: (chatId, newTitle) =>
+    set((state) => ({
+      chats: state.chats.map(
+        (chat) => chat.id === chatId && { ...chat, title: newTitle },
+      ),
+    })),
 }));

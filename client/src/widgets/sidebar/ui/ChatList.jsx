@@ -1,6 +1,10 @@
-import { TrashIcon } from "@phosphor-icons/react";
+import { PencilSimpleIcon, TrashIcon } from "@phosphor-icons/react";
+import { useState } from "react";
 
-function ChatList({ chats, activeChat, onSelect, onDelete }) {
+function ChatList({ chats, activeChat, onSelect, onRename, onDelete }) {
+  const [editingId, setEditingId] = useState(null);
+  const [title, setTitle] = useState("");
+
   return (
     <ul className="custom-scrollbar flex flex-col gap-1 overflow-y-auto px-4 py-1">
       {chats.map((chat, index) => (
@@ -12,16 +16,49 @@ function ChatList({ chats, activeChat, onSelect, onDelete }) {
           }
           onClick={() => onSelect(chat.id)}
         >
-          {chat.title}
-          <button
-            className="text-error h-full cursor-pointer opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete(chat.id);
-            }}
-          >
-            <TrashIcon weight="bold" />
-          </button>
+          {editingId === chat.id ? (
+            <input
+              className="caret-text border-none outline-none"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              onBlur={(e) => {
+                onRename(chat.id, e.target.value);
+                setEditingId(null);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onRename(chat.id, title);
+                  setEditingId(null);
+                }
+              }}
+              autoFocus
+            />
+          ) : (
+            <span>{chat.title}</span>
+          )}
+
+          <div className="flex gap-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            <button
+              className="text-accent h-full cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditingId(chat.id);
+                setTitle(chat.title);
+              }}
+            >
+              <PencilSimpleIcon weight="bold" />
+            </button>
+            <button
+              className="text-error h-full cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete(chat.id);
+              }}
+            >
+              <TrashIcon weight="bold" />
+            </button>
+          </div>
         </li>
       ))}
     </ul>

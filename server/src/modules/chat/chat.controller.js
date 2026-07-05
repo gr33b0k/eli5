@@ -42,6 +42,18 @@ export async function deleteChat(req, res) {
   }
 }
 
+export async function renameChat(req, res) {
+  try {
+    const userId = req.user.userId;
+    const chatId = req.params.id;
+    const newTitle = req.body.newTitle;
+    await chatService.renameChat(chatId, userId, newTitle);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to rename chat" });
+  }
+}
+
 export async function sendMessage(req, res) {
   try {
     const userId = req.user.userId;
