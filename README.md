@@ -1,16 +1,65 @@
-# React + Vite
+# ELI5
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern chat application for learning by asking questions and getting simple explanations.
 
-Currently, two official plugins are available:
+You can register, log in, create chat sessions, and keep message history while the assistant responds using AI-powered explanations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- User authentication: register, login, logout
+- Chat sessions with message history
+- AI explanations powered by OpenRouter
+- Simple conversational UI with user and assistant messages
+- Zustand state management and animated UI components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router
+- Zustand
+- Express
+- Prisma
+- OpenRouter API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run locally
+
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/gr33b0k/eli5.git
+   ```
+2. Open the project:
+
+   ```sh
+   cd eli5
+   ```
+
+3. Install dependencies:
+
+   ```sh
+   cd server && npm install
+   cd ../client && npm install
+   ```
+
+4. Configure the backend:
+   - Create a `.env` file inside `server/`
+   - Add `DATABASE_URL`, `OPENROUTER_API_KEY` and `JWT_SECRET`
+
+5. Generate Prisma client:
+
+   ```sh
+   cd server
+   npx prisma generate
+   ```
+
+6. Start the application:
+
+   ```sh
+   cd ..
+   npm run dev
+   ```
+
+7. Open the app:
+   ```sh
+   http://localhost:5173
+   ```
