@@ -62,6 +62,7 @@ export async function sendMessage(req, res) {
     const result = await chatService.sendMessage(chatId, userId, query, level);
     res.status(201).json(result);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Failed to send message" });
   }
 }

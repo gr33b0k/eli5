@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PaperPlaneRightIcon, StopIcon } from "@phosphor-icons/react";
 
-function InputBox({ onSubmit, loading }) {
+function InputBox({ onSubmit }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -30,7 +30,7 @@ function InputBox({ onSubmit, loading }) {
         onClick={handleSubmit}
         className="btn-primary px-3 py-2 text-white shadow-none"
       >
-        {loading ? <StopIcon size={22} /> : <PaperPlaneRightIcon size={22} />}
+        <PaperPlaneRightIcon size={22} />
       </button>
     </div>
   );

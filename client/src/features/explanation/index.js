@@ -1,1 +1,1 @@
-export { default as Explanation } from "./ui/Explanation";
+export { default as ChatContent } from "./ui/ChatContent";

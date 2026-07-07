@@ -67,7 +67,7 @@
 }
 
 @utility custom-scrollbar {
-  @apply scrollbar-thumb-primary mr-1 scrollbar-thin scrollbar-track-transparent;
+  @apply scrollbar-thumb-primary scrollbar-thin scrollbar-track-transparent;
 }
 
 @utility btn-primary {

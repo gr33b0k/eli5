@@ -98,7 +98,7 @@ export async function sendMessage(chatId, userId, query, level) {
 
   if (!chat) throw new Error("Chat not found");
 
-  await prisma.message.create({
+  const userMessage = await prisma.message.create({
     data: {
       role: "USER",
       chatId,

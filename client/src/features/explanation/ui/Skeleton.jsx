@@ -28,12 +28,6 @@ function Skeleton() {
           </div>
         ))}
       </div>
-      <div className="flex animate-pulse gap-4">
-        <div className="glass h-10 w-36 rounded-2xl" />
-        <div className="glass h-10 w-40 rounded-2xl" />
-        <div className="glass h-10 w-44 rounded-2xl" />
-        <div className="glass h-10 w-40 rounded-2xl" />
-      </div>
     </>
   );
 }

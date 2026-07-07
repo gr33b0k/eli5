@@ -25,11 +25,18 @@ function Sidebar() {
   async function handleCreateChat() {
     const chat = await createChat();
     addChat(chat);
+    setActiveChat(chat.id);
   }
 
   async function handleDeleteChat(chatId) {
     await deleteChat(chatId);
     removeChat(chatId);
+
+    const { activeChatId, chats } = useChatStore.getState();
+
+    if (activeChatId === chatId && chats.length === 0) {
+      setActiveChat(null);
+    }
   }
 
   async function handleRenameChat(chatId, newTitle) {
