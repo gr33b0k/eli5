@@ -1,5 +1,7 @@
+import { api } from "../../../shared/lib/api.js";
+
 export async function renameChat(chatId, newTitle) {
-  const response = await fetch(`http://localhost:3000/chat/${chatId}/rename`, {
+  const response = await fetch(api.chat.rename(chatId), {
     method: "PATCH",
     credentials: "include",
     headers: {

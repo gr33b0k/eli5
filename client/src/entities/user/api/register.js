@@ -1,5 +1,7 @@
+import { api } from "../../../shared/lib/api.js";
+
 export async function register(data) {
-  const response = await fetch("http://localhost:3000/auth/register", {
+  const response = await fetch(api.auth.register, {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },

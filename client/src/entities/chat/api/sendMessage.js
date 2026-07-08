@@ -1,5 +1,7 @@
+import { api } from "../../../shared/lib/api.js";
+
 export async function sendMessage(chatId, query, level) {
-  const response = await fetch(`http://localhost:3000/chat/${chatId}/message`, {
+  const response = await fetch(api.chat.message(chatId), {
     method: "POST",
     credentials: "include",
     headers: {

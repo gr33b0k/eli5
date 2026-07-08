@@ -1,5 +1,7 @@
+import { api } from "../../../shared/lib/api.js";
+
 export async function getMe() {
-  const response = await fetch("http://localhost:3000/auth/me", {
+  const response = await fetch(api.auth.me, {
     credentials: "include",
   });
 

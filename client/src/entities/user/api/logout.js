@@ -1,5 +1,7 @@
+import { api } from "../../../shared/lib/api.js";
+
 export async function logout() {
-  await fetch("http://localhost:3000/auth/logout", {
+  await fetch(api.auth.logout, {
     method: "POST",
     credentials: "include",
   });
