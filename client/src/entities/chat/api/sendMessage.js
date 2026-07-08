@@ -1,4 +1,4 @@
-import { api } from "../../../shared/lib/api.js";
+import { api } from "@/shared/lib/api.js";
 
 export async function sendMessage(chatId, query, level) {
   const response = await fetch(api.chat.message(chatId), {

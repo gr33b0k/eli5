@@ -1,4 +1,4 @@
-import { api } from "../../../shared/lib/api.js";
+import { api } from "@/shared/lib/api.js";
 
 export async function register(data) {
   const response = await fetch(api.auth.register, {

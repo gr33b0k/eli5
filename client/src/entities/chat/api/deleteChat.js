@@ -1,4 +1,4 @@
-import { api } from "../../../shared/lib/api.js";
+import { api } from "@/shared/lib/api.js";
 
 export async function deleteChat(chatId) {
   const response = await fetch(api.chat.delete(chatId), {
