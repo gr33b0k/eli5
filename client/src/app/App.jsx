@@ -7,6 +7,7 @@ import { useChatStore, getChats } from "@/entities/chat";
 function App() {
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
+  const setInitialized = useUserStore((state) => state.setInitialized);
   const setChats = useChatStore((state) => state.setChats);
 
   useEffect(() => {
@@ -25,6 +26,8 @@ function App() {
         }
       } catch (e) {
         console.error(e);
+      } finally {
+        setInitialized(true);
       }
     }
 
