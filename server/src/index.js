@@ -7,9 +7,11 @@ import chatRoutes from "./modules/chat/chat.routes.js";
 
 const app = express();
 
+const allowedOrigins = process.env.CLIENT_URL.split(",");
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   }),
 );
