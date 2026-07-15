@@ -10,7 +10,6 @@ function AuthForm({ mode = "login", onSubmit }) {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const isLogin = mode === "login";
@@ -49,17 +48,6 @@ function AuthForm({ mode = "login", onSubmit }) {
           iconLeft={<KeyIcon weight="bold" size={18} />}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
-
-        {!isLogin && (
-          <FormInput
-            type="password"
-            placeholder="Confirm Password"
-            iconLeft={<KeyIcon weight="bold" size={18} />}
-            onChange={(e) =>
-              setForm({ ...form, confirmPassword: e.target.value })
-            }
-          />
-        )}
 
         <button className="btn-primary w-full" type="submit">
           {buttonText}

@@ -22,15 +22,7 @@ function AuthCard() {
       return;
     }
 
-    if (data.password !== data.confirmPassword) {
-      return;
-    }
-
-    const user = await register({
-      username: data.username,
-      email: data.email,
-      password: data.password,
-    });
+    const user = await register(data);
 
     setUser(user);
   }
