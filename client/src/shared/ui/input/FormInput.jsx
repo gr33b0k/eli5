@@ -36,6 +36,7 @@ function FormInput({ className = "", iconLeft, error, ...props }) {
         {props.type === "password" && (
           <button
             type="button"
+            tabIndex={-1}
             onClick={() => setIsPasswordVisible(!isPasswordVisible)}
             className={`text-text flex shrink-0 items-center justify-center ${
               hasValue ? "opacity-100" : "pointer-events-none opacity-0"
