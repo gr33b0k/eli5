@@ -1,2 +1,2 @@
-export { useParallax } from "./useParallax";
-export { api } from "./api";
+export { useParallax } from "./hooks";
+export { api, request, ApiError } from "./api";

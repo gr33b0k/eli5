@@ -1,15 +1,13 @@
-import { api } from "@/shared/lib/api.js";
+import { api, request } from "@/shared/lib";
 
 export async function getMe() {
-  const response = await fetch(api.auth.me, {
-    credentials: "include",
-  });
+  try {
+    return await request(api.auth.me);
+  } catch (error) {
+    if (error.status === 401) {
+      return null;
+    }
 
-  if (response.status === 401) return null;
-
-  const result = await response.json();
-
-  if (!response.ok) throw new Error(result.error);
-
-  return result;
+    throw error;
+  }
 }
