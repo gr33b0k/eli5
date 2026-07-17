@@ -1,14 +1,5 @@
-import { api } from "@/shared/lib/api.js";
+import { api, request } from "@/shared/lib";
 
-export async function getChat(chatId) {
-  const response = await fetch(api.chat.byId(chatId), {
-    method: "GET",
-    credentials: "include",
-  });
-
-  const result = await response.json();
-
-  if (!response.ok) console.log(result.error);
-
-  return result;
+export function getChat(chatId) {
+  return request(api.chat.byId(chatId));
 }

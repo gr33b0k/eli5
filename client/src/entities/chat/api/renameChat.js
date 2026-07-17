@@ -1,9 +1,8 @@
-import { api } from "@/shared/lib/api.js";
+import { api, request } from "@/shared/lib";
 
-export async function renameChat(chatId, newTitle) {
-  const response = await fetch(api.chat.rename(chatId), {
+export function renameChat(chatId, newTitle) {
+  return request(api.chat.rename(chatId), {
     method: "PATCH",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -11,9 +10,4 @@ export async function renameChat(chatId, newTitle) {
       newTitle,
     }),
   });
-
-  if (!response.ok) {
-    const result = await response.json();
-    console.error(result.error);
-  }
 }

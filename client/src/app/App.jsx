@@ -18,7 +18,7 @@ function App() {
         if (user) {
           setUser(user);
 
-          const chats = await getChats(user.id);
+          const chats = await getChats();
 
           if (chats) {
             setChats(chats);

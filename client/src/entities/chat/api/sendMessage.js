@@ -1,9 +1,8 @@
-import { api } from "@/shared/lib/api.js";
+import { api, request } from "@/shared/lib";
 
-export async function sendMessage(chatId, query, level) {
-  const response = await fetch(api.chat.message(chatId), {
+export function sendMessage(chatId, query, level) {
+  return request(api.chat.message(chatId), {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -12,12 +11,4 @@ export async function sendMessage(chatId, query, level) {
       level,
     }),
   });
-
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.error);
-  }
-
-  return result;
 }
