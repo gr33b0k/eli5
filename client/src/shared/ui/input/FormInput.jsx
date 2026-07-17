@@ -1,7 +1,9 @@
-import { EyeIcon, EyeSlashIcon } from "@phosphor-icons/react";
 import { useState } from "react";
+import { motion } from "motion/react";
 
-function FormInput({ className = "", iconLeft, error, ...props }) {
+import { EyeIcon, EyeSlashIcon, SpadeIcon } from "@phosphor-icons/react";
+
+function FormInput({ className = "", iconLeft, error, message, ...props }) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [hasValue, setHasValue] = useState(false);
 
@@ -15,10 +17,12 @@ function FormInput({ className = "", iconLeft, error, ...props }) {
   return (
     <div className="flex w-full flex-col gap-1.5">
       <div
-        className={`glass-60 text-text focus-within:shadow-even flex items-center gap-3 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out ${error ? "focus-within:shadow-error/50 bg-error/10" : "focus-within:shadow-primary"} ${className} `}
+        className={`glass-60 text-text focus-within:shadow-even flex items-center gap-3 rounded-xl px-4 py-2 transition-shadow duration-300 ease-in-out ${error ? "shadow-even shadow-error/50" : "focus-within:shadow-primary"} ${className} `}
       >
         {iconLeft && (
-          <div className="text-text flex shrink-0 items-center justify-center">
+          <div
+            className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${error ? "text-error" : "text-text"} `}
+          >
             {iconLeft}
           </div>
         )}
@@ -50,7 +54,25 @@ function FormInput({ className = "", iconLeft, error, ...props }) {
           </button>
         )}
       </div>
-      {error && <span className="text-error/70 pl-2 text-sm">{error}</span>}
+      {message && (
+        <motion.span
+          initial={{
+            opacity: 0,
+            height: 0,
+          }}
+          animate={{
+            opacity: 1,
+            height: "auto",
+          }}
+          exit={{
+            opacity: 0,
+            height: 0,
+          }}
+          className="text-error text-sm"
+        >
+          {message}
+        </motion.span>
+      )}
     </div>
   );
 }

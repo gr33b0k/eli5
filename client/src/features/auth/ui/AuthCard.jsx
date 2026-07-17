@@ -14,7 +14,7 @@ function AuthCard() {
   async function handleAuth(data) {
     if (mode === "login") {
       const user = await login({
-        username: data.email,
+        username: data.login,
         password: data.password,
       });
 
