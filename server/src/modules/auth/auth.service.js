@@ -2,19 +2,30 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import { prisma } from "../../lib/prisma.js";
+import { AppError } from "../../lib/AppError.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 export async function register(data) {
   const { username, email, password } = data;
 
-  const existingUser = await prisma.user.findFirst({
+  const existingUsername = await prisma.user.findUnique({
     where: {
-      OR: [{ email }, { username }],
+      username,
     },
   });
 
-  if (existingUser) throw new Error("User already exists");
+  if (existingUsername)
+    throw new AppError(409, "USERNAME_TAKEN", "Username already taken");
+
+  const existingEmail = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (existingEmail)
+    throw new AppError(409, "EMAIL_TAKEN", "Email already taken");
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -51,11 +62,21 @@ export async function login(data) {
     },
   });
 
-  if (!user) throw new Error("User not found");
+  if (!user)
+    throw new AppError(
+      401,
+      "INVALID_CREDENTIALS",
+      "Invalid username/email or password",
+    );
 
-  const isValid = await bcrypt.compare(password, user.password);
+  const isValidPassword = await bcrypt.compare(password, user.password);
 
-  if (!isValid) throw new Error("Invalid password");
+  if (!isValidPassword)
+    throw new AppError(
+      401,
+      "INVALID_CREDENTIALS",
+      "Invalid username/email or password",
+    );
 
   const { password: _, ...userNoPassword } = user;
 

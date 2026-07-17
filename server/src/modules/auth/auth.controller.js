@@ -1,3 +1,4 @@
+import { AppError } from "../../lib/AppError.js";
 import { me, register, login } from "./auth.service.js";
 
 export async function registerController(req, res) {
@@ -11,10 +12,19 @@ export async function registerController(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json(user);
+    return res.status(201).json(user);
   } catch (error) {
-    return res.status(400).json({
-      error: error.message,
+    if (error instanceof AppError) {
+      return res.status(error.status).json({
+        error: error.message,
+        code: error.code,
+      });
+    }
+
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Internal server error",
     });
   }
 }
@@ -32,14 +42,27 @@ export async function loginController(req, res) {
 
     return res.json(user);
   } catch (error) {
-    return res.status(400).json({
-      error: error.message,
+    if (error instanceof AppError) {
+      return res.status(error.status).json({
+        error: error.message,
+        code: error.code,
+      });
+    }
+
+    console.error(error);
+
+    return res.status(500).json({
+      error: "Internal server error",
     });
   }
 }
 
 export async function logoutController(req, res) {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
 
   res.json({ success: true });
 }
@@ -49,15 +72,15 @@ export async function meController(req, res) {
     const user = await me(req.user.userId);
 
     if (!user) {
-      return res.status(404).json({
-        error: "User not found",
+      return res.status(401).json({
+        error: "Unauthorized",
       });
     }
 
     return res.json(user);
   } catch (error) {
     return res.status(500).json({
-      error: error.message,
+      error: "Internal server error",
     });
   }
 }
