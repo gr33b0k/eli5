@@ -45,7 +45,7 @@ function AuthCard() {
       transition={{
         duration: 0.3,
       }}
-      className="glass-10 flex w-100 flex-col items-center justify-center gap-6 rounded-3xl p-8"
+      className="glass-10 flex w-full max-w-md flex-col items-center justify-center gap-6 rounded-3xl p-6 sm:p-8"
     >
       <AuthForm mode={mode} onSubmit={handleAuth} />
       <div className="text-text-muted text-sm">

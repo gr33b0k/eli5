@@ -4,9 +4,9 @@ import AuthCard from "@/features/auth/ui/AuthCard";
 
 function Auth() {
   return (
-    <Background className="flex h-screen flex-col overflow-hidden p-4">
+    <Background className="flex min-h-screen flex-col justify-center overflow-hidden p-4">
       <Header animate={false} />
-      <div className="flex h-full items-center justify-center">
+      <div className="flex min-h-[calc(100vh-96px)] items-center justify-center py-8">
         <AuthCard />
       </div>
     </Background>
