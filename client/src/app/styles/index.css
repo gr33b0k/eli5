@@ -28,6 +28,9 @@
 
   /* Shadows */
   --shadow-even: 0px 0px 6px 1px var(--tw-shadow-color);
+
+  /* Breakpoints */
+  --breakpoint-xs: 30rem;
 }
 
 @utility bg-gradient {

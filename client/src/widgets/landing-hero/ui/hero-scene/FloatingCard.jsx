@@ -9,6 +9,7 @@ function FloatingCard({
   left,
   delay,
   children,
+  className = "",
 }) {
   return (
     <motion.div
@@ -36,7 +37,7 @@ function FloatingCard({
         y: useTransform(parallaxY, (v) => v * 3),
         willChange: "transform",
       }}
-      className="glass-15 absolute z-20 flex w-max items-center gap-3 rounded-3xl p-4 pr-7"
+      className={`glass-15 absolute z-20 w-max items-center gap-3 rounded-3xl p-4 pr-7 ${className}`}
     >
       <div className="glass bg-primary/10 aspect-square h-fit rounded-full p-3">
         {children}

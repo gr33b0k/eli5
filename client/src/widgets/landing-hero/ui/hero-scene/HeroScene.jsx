@@ -12,7 +12,7 @@ import FloatingCard from "./FloatingCard";
 
 function HeroScene({ parallaxX, parallaxY }) {
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="hidden h-full w-full items-center justify-center xl:flex">
       <div className="relative">
         <HeroOrbs parallaxX={parallaxX} parallaxY={parallaxY} />
         <FloatingCard
@@ -23,6 +23,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           top={0}
           left={5}
           delay={0.3}
+          className="hidden md:flex"
         >
           <ChatIcon size={24} className="text-accent" />
         </FloatingCard>
@@ -34,6 +35,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           top={20}
           left={80}
           delay={0.5}
+          className="hidden md:flex"
         >
           <TreeStructureIcon size={24} className="text-accent" />
         </FloatingCard>
@@ -45,6 +47,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           top={60}
           left={15}
           delay={0.7}
+          className="hidden md:flex"
         >
           <SlidersHorizontalIcon size={24} className="text-accent" />
         </FloatingCard>
@@ -60,7 +63,7 @@ function HeroScene({ parallaxX, parallaxY }) {
           }}
           src={brain}
           alt="Brain"
-          className="relative z-10 block h-[min(70vh,600px)] w-auto object-contain drop-shadow-[0_0_70px_#ffffff50]"
+          className="relative z-10 block h-[min(40vh,320px)] w-auto object-contain drop-shadow-[0_0_70px_#ffffff50] sm:h-[min(55vh,420px)] lg:h-[min(70vh,600px)]"
         />
       </div>
     </div>

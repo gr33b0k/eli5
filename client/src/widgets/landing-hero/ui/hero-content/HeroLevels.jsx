@@ -57,7 +57,7 @@ function HeroLevels() {
       <h3 className="text-text mb-4 flex items-center gap-2 text-lg font-semibold">
         <SlidersHorizontalIcon size={24} className="" /> Choose your level:
       </h3>
-      <div className="relative flex gap-2">
+      <div className="relative flex flex-col gap-3 md:flex-row">
         {LEVELS.map((level) => {
           const Icon = level.icon;
           const isActiveLevel = activeLevel === level.id;

@@ -20,7 +20,7 @@ function Header({ animate = true, children }) {
           duration: 0.5,
         },
       })}
-      className="z-10 flex min-h-20 w-full justify-between rounded-4xl px-10 py-5"
+      className="z-10 flex min-h-20 w-full flex-col items-start gap-4 rounded-4xl px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-10"
     >
       <Logo />
 

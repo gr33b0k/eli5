@@ -8,7 +8,10 @@ function Landing() {
   return (
     <div className="bg-gradient relative flex h-screen flex-col overflow-hidden p-4">
       <Header>
-        <button onClick={() => navigate("/auth")} className="btn-primary">
+        <button
+          onClick={() => navigate("/auth")}
+          className="btn-primary hidden sm:block"
+        >
           Get started
         </button>
       </Header>

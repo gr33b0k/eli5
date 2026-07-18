@@ -9,7 +9,7 @@ function LandingHero() {
   return (
     <main
       onMouseMove={handleMouseMove}
-      className="relative grid min-h-0 flex-1 grid-cols-2 items-center px-18"
+      className="relative grid min-h-0 flex-1 grid-cols-1 items-center gap-10 px-4 py-2 sm:px-18 xl:grid-cols-2"
     >
       <HeroContent />
       <HeroScene parallaxX={parallaxX} parallaxY={parallaxY} />

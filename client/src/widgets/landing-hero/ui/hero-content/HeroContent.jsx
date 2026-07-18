@@ -36,11 +36,11 @@ function HeroContent() {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="relative z-10 flex max-w-7/8 flex-col gap-4"
+      className="relative z-10 flex w-full max-w-full flex-col gap-4"
     >
       <motion.div
         variants={slideDown}
-        className="glass mb-2 flex w-fit items-center gap-2 rounded-full px-5 py-2"
+        className="glass mb-2 hidden w-fit items-center gap-2 rounded-full px-5 py-2 sm:flex"
       >
         <div className="bg-accent h-2 w-2 animate-pulse rounded-full" />
 
@@ -51,7 +51,7 @@ function HeroContent() {
 
       <motion.h1
         variants={slideDown}
-        className="font-syne text-text text-6xl leading-none font-black"
+        className="font-syne text-text xs:text-4xl text-3xl leading-tight font-black sm:text-5xl md:text-6xl"
       >
         Understand{" "}
         <span className="from-primary-active to-primary bg-linear-to-r bg-clip-text text-transparent italic">
@@ -63,7 +63,7 @@ function HeroContent() {
 
       <motion.p
         variants={slideDown}
-        className="text-text-muted text-lg leading-relaxed"
+        className="text-text-muted text-base leading-relaxed sm:text-lg"
       >
         ELI5 breaks down complex topics into beautifully simple explanations
         tailored to how you think and learn.
