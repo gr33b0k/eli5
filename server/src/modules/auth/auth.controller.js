@@ -1,6 +1,20 @@
 import { AppError } from "../../lib/AppError.js";
 import { me, register, login } from "./auth.service.js";
 
+function handleError(res, error) {
+  if (error instanceof AppError) {
+    return res;
+    res.status(error.status).json({
+      error: error.message,
+      code: error.code,
+      meta: error.meta,
+    });
+  }
+
+  console.error(error);
+  return res.status(500).json({ error: "Internal server error" });
+}
+
 export async function registerController(req, res) {
   try {
     const { user, token } = await register(req.body);
@@ -14,18 +28,7 @@ export async function registerController(req, res) {
 
     return res.status(201).json(user);
   } catch (error) {
-    if (error instanceof AppError) {
-      return res.status(error.status).json({
-        error: error.message,
-        code: error.code,
-      });
-    }
-
-    console.error(error);
-
-    return res.status(500).json({
-      error: "Internal server error",
-    });
+    return handleError(res, error);
   }
 }
 
@@ -42,18 +45,7 @@ export async function loginController(req, res) {
 
     return res.json(user);
   } catch (error) {
-    if (error instanceof AppError) {
-      return res.status(error.status).json({
-        error: error.message,
-        code: error.code,
-      });
-    }
-
-    console.error(error);
-
-    return res.status(500).json({
-      error: "Internal server error",
-    });
+    return handleError(res, error);
   }
 }
 
@@ -79,8 +71,6 @@ export async function meController(req, res) {
 
     return res.json(user);
   } catch (error) {
-    return res.status(500).json({
-      error: "Internal server error",
-    });
+    return handleError(res, error);
   }
 }
