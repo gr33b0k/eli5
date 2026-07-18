@@ -16,13 +16,27 @@ function Sidebar() {
   const clearUser = useUserStore((state) => state.clearUser);
 
   const chats = useChatStore((state) => state.chats);
-  const activeChat = useChatStore((state) => state.activeChatId);
   const addChat = useChatStore((state) => state.addChat);
+  const getChatById = useChatStore((state) => state.getChatById);
+  const activeChatId = useChatStore((state) => state.activeChatId);
   const removeChat = useChatStore((state) => state.removeChat);
   const changeChatName = useChatStore((state) => state.changeChatName);
   const setActiveChat = useChatStore((state) => state.setActiveChat);
 
   async function handleCreateChat() {
+    const activeChat = getChatById(activeChatId);
+
+    if (
+      activeChat &&
+      activeChat.messages.length === 0 &&
+      activeChat.title === "New chat"
+    )
+      return;
+
+    if (activeChat?.deletedOnServer) {
+      removeChat(activeChatId);
+    }
+
     const chat = await createChat();
     addChat(chat);
     setActiveChat(chat.id);
@@ -61,7 +75,7 @@ function Sidebar() {
         </button>
         <ChatList
           chats={chats}
-          activeChat={activeChat}
+          activeChat={activeChatId}
           onSelect={setActiveChat}
           onRename={handleRenameChat}
           onDelete={handleDeleteChat}

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
 export const useChatStore = create(
-  devtools((set) => ({
+  devtools((set, get) => ({
     chats: [],
     activeChatId: null,
 
@@ -11,7 +11,24 @@ export const useChatStore = create(
     setActiveChat: (id) => set({ activeChatId: id }),
 
     addChat: (chat) =>
-      set((state) => ({ chats: [{ ...chat, messages: [] }, ...state.chats] })),
+      set((state) => ({
+        chats: [
+          { ...chat, messages: [], deletedOnServer: false },
+          ...state.chats,
+        ],
+      })),
+    getChatById: (chatId) => get().chats.find((chat) => chat.id === chatId),
+    markDeleted: (chatId) =>
+      set((state) => ({
+        chats: state.chats.map((chat) =>
+          chat.id === chatId
+            ? {
+                ...chat,
+                deletedOnServer: true,
+              }
+            : chat,
+        ),
+      })),
     removeChat: (chatId) =>
       set((state) => ({
         chats: state.chats.filter((chat) => chat.id !== chatId),
