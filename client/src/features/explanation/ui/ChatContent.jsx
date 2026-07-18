@@ -13,8 +13,9 @@ function ChatContent() {
 
   const chats = useChatStore((state) => state.chats);
   const activeChatId = useChatStore((state) => state.activeChatId);
+  const getChatById = useChatStore((state) => state.getChatById);
 
-  const currentChat = chats.find((chat) => chat.id === activeChatId);
+  const currentChat = getChatById(activeChatId);
 
   return (
     <AnimatePresence>

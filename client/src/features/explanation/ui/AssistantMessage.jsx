@@ -27,9 +27,12 @@ const item = {
 function AssistantMessage({ message }) {
   const loading = message.loading;
   const content = message.content;
+  const isError = message.error === true || !content;
 
   return (
-    <article className="glass-10 text-text flex h-full rounded-4xl p-5">
+    <article
+      className={`${!isError ? "glass-10 text-text flex h-full rounded-4xl p-5" : ""}`}
+    >
       <AnimatePresence mode="wait">
         {loading ? (
           <motion.div
@@ -40,6 +43,19 @@ function AssistantMessage({ message }) {
             className="flex h-full flex-1 flex-col gap-4"
           >
             <Skeleton />
+          </motion.div>
+        ) : isError ? (
+          <motion.div
+            key="error"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex h-full flex-1 flex-col gap-4"
+          >
+            <div className="border-error/30 bg-error/20 text-error rounded-3xl border p-5">
+              <h2 className="mb-2 text-xl font-semibold">{content.title}</h2>
+              <p>{content.sections[0].content}</p>
+            </div>
           </motion.div>
         ) : (
           <motion.div

@@ -23,6 +23,7 @@ export async function request(url, options = {}) {
       response.status,
       result?.code ?? "UNKNOWN_ERROR",
       result?.error ?? response.statusText,
+      result?.meta,
     );
   }
 

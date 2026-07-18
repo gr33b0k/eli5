@@ -7,11 +7,16 @@ import {
   sendMessage,
   renameChat,
 } from "@/entities/chat";
+import { ApiError } from "@/shared/lib";
 
 export function useExplanation() {
   const [level, setLevel] = useState("eli5");
 
   const addChat = useChatStore((state) => state.addChat);
+
+  const markDeleted = useChatStore((state) => state.markDeleted);
+
+  const getChatById = useChatStore((state) => state.getChatById);
 
   const addMessage = useChatStore((state) => state.addMessage);
 
@@ -28,9 +33,7 @@ export function useExplanation() {
   useEffect(() => {
     if (!activeChatId) return;
 
-    const chat = useChatStore
-      .getState()
-      .chats.find((chat) => chat.id === activeChatId);
+    const chat = getChatById(activeChatId);
 
     if (!chat || chat.messages.length > 0) return;
 
@@ -66,8 +69,6 @@ export function useExplanation() {
       chatId = chat.id;
     }
 
-    console.log(useChatStore.getState().chats);
-
     addMessage(chatId, {
       id: crypto.randomUUID(),
       role: "USER",
@@ -83,10 +84,6 @@ export function useExplanation() {
       content: null,
     });
 
-    console.log(
-      useChatStore.getState().chats.find((chat) => chat.id === chatId),
-    );
-
     try {
       const data = await sendMessage(chatId, query, level);
 
@@ -95,16 +92,33 @@ export function useExplanation() {
         content: data.content,
       });
 
-      const chat = useChatStore
-        .getState()
-        .chats.find((chat) => chat.id === chatId);
+      const chat = getChatById(chatId);
 
       if (chat?.title === "New chat") {
         changeChatName(chatId, data.content.title);
         await renameChat(chatId, data.content.title);
       }
     } catch (error) {
-      console.error(error);
+      const isApiError = error instanceof ApiError;
+      if (isApiError && error.meta.chatDeleted) {
+        markDeleted(chatId);
+      }
+      const message = isApiError ? error.message : "Something went wrong";
+      const code = isApiError ? error.code : undefined;
+
+      updateMessage(chatId, loadingId, {
+        loading: false,
+        error: true,
+        content: {
+          title: "Error",
+          sections: [
+            {
+              type: code || "Error",
+              content: message,
+            },
+          ],
+        },
+      });
     }
   }
 
