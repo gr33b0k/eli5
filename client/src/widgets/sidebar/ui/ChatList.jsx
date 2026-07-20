@@ -1,12 +1,22 @@
 import { PencilSimpleIcon, TrashIcon } from "@phosphor-icons/react";
+import { isPrimaryPointer } from "motion/react";
 import { useState } from "react";
 
-function ChatList({ chats, activeChat, onSelect, onRename, onDelete }) {
+function ChatList({
+  compact,
+  chats,
+  activeChat,
+  onSelect,
+  onRename,
+  onDelete,
+}) {
   const [editingId, setEditingId] = useState(null);
   const [title, setTitle] = useState("");
 
   return (
-    <ul className="custom-scrollbar flex flex-col gap-1 overflow-y-auto px-4 py-1">
+    <ul
+      className={`custom-scrollbar flex flex-col gap-1 overflow-y-auto px-4 py-1 ${compact ? "hidden" : ""}`}
+    >
       {chats.map((chat, index) => (
         <li
           key={chat.id}

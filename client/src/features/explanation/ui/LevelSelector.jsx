@@ -28,7 +28,7 @@ function LevelSelector({ level, onChange, ...props }) {
         <button
           key={l.id}
           className={
-            "z-10 min-w-35 rounded-4xl p-2 transition-colors duration-300 ease-in-out " +
+            "xs:min-w-35 z-10 w-full min-w-30 rounded-4xl p-2 transition-colors duration-300 ease-in-out " +
             (l.id === level ? "text-surface" : "text-text-muted")
           }
           onClick={() => l.id !== level && onChange(l.id)}

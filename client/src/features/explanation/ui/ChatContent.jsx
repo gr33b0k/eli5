@@ -43,7 +43,7 @@ function ChatContent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.3 }}
-            className="text-text font-syne text-center text-4xl font-bold"
+            className="text-text font-syne text-center text-3xl font-bold lg:text-4xl"
           >
             Understand{" "}
             <span className="from-primary-active to-primary relative bg-linear-to-r bg-clip-text text-transparent italic">
@@ -73,7 +73,7 @@ function ChatContent() {
           <motion.div
             layoutId="input-shell"
             layout
-            className="mx-auto w-full max-w-2xl"
+            className="mx-auto w-full max-w-xl lg:max-w-2xl"
           >
             <InputBox onSubmit={handleExplain} />
           </motion.div>
