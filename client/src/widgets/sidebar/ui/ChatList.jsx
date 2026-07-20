@@ -21,7 +21,7 @@ function ChatList({
         <li
           key={chat.id}
           className={
-            "text-text group flex cursor-pointer items-center justify-between rounded-4xl px-3 py-2 transition-colors duration-300 ease-in-out " +
+            "text-text group flex cursor-pointer items-center justify-between overflow-hidden rounded-4xl px-3 py-2 transition-colors duration-300 ease-in-out " +
             (chat.id === activeChat ? "glass-50" : "hover:bg-surface/60")
           }
           onClick={() => onSelect(chat.id)}
@@ -45,10 +45,12 @@ function ChatList({
               autoFocus
             />
           ) : (
-            <span>{chat.title}</span>
+            <span className="truncate" title={chat.title}>
+              {chat.title}
+            </span>
           )}
 
-          <div className="flex gap-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <div className="flex gap-2 opacity-100 transition-opacity duration-200 md:opacity-0 md:group-hover:opacity-100">
             <button
               className="text-accent h-full cursor-pointer"
               onClick={(e) => {

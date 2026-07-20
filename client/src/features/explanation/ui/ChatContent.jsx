@@ -20,7 +20,10 @@ function ChatContent() {
   return (
     <AnimatePresence>
       {currentChat?.messages?.length ? (
-        <motion.div key="messages" className="flex h-full flex-col gap-4">
+        <motion.div
+          key="messages"
+          className="flex min-h-0 flex-1 flex-col gap-4"
+        >
           <MessageList messages={currentChat.messages} />
           <motion.div
             layoutId="input-shell"

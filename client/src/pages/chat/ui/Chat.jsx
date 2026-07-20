@@ -11,11 +11,11 @@ function Chat() {
   const getChatById = useChatStore((state) => state.getChatById);
 
   return (
-    <Background className="relative flex h-screen flex-col overflow-hidden md:flex-row">
+    <Background className="relative flex h-dvh flex-col overflow-hidden md:flex-row">
       <Sidebar isOpen={sidebarOpen} onOpenChange={setSidebarOpen} />
 
-      <main className="relative flex h-full flex-1 flex-col gap-4 overflow-hidden p-4 md:pl-2">
-        <div className="mb-4 flex items-center md:hidden">
+      <main className="relative flex h-full min-h-0 flex-1 flex-col gap-4 overflow-hidden p-4 md:pl-2">
+        <div className="flex items-center md:hidden">
           <button
             type="button"
             className="text-text glass-40 z-10 flex items-center justify-center rounded-full p-2"

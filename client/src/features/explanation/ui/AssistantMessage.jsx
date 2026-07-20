@@ -31,31 +31,21 @@ function AssistantMessage({ message }) {
 
   return (
     <article
-      className={`${!isError ? "glass-10 text-text flex h-full rounded-4xl p-5" : ""}`}
+      className={`${!isError ? "glass-10 text-text flex rounded-4xl p-5" : ""}`}
     >
       <AnimatePresence mode="wait">
         {loading ? (
-          <motion.div
-            key="skeleton"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex h-full flex-1 flex-col gap-4"
-          >
-            <Skeleton />
-          </motion.div>
+          <Skeleton key="skeleton" />
         ) : isError ? (
           <motion.div
             key="error"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex h-full flex-1 flex-col gap-4"
+            className="bg-error text-surface rounded-4xl p-5"
           >
-            <div className="border-error/30 bg-error/20 text-error rounded-3xl border p-5">
-              <h2 className="mb-2 text-xl font-semibold">{content.title}</h2>
-              <p>{content.sections[0].content}</p>
-            </div>
+            <h2 className="mb-2 text-xl font-semibold">{content.title}</h2>
+            <p>{content.sections[0].content}</p>
           </motion.div>
         ) : (
           <motion.div
@@ -65,11 +55,12 @@ function AssistantMessage({ message }) {
             animate="visible"
             className="flex h-full flex-1 flex-col gap-4"
           >
-            <motion.div variants={item} className="flex justify-between">
-              <h2 className="text-xl/loose font-medium capitalize">
-                {content.title}
-              </h2>
-            </motion.div>
+            <motion.h2
+              variants={item}
+              className="text-lg font-medium capitalize md:text-xl"
+            >
+              {content.title}
+            </motion.h2>
 
             <Body content={content} />
           </motion.div>

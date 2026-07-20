@@ -1,6 +1,14 @@
-function Skeleton() {
+import { motion } from "motion/react";
+
+function Skeleton({ key }) {
   return (
-    <>
+    <motion.div
+      key={key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="glass-10 flex h-full flex-1 flex-col gap-4 rounded-4xl p-5"
+    >
       <div className="flex animate-pulse items-center justify-between">
         <div className="h-7 w-64 rounded-lg bg-slate-300/40" />
         <div className="flex items-center gap-2">
@@ -28,7 +36,7 @@ function Skeleton() {
           </div>
         ))}
       </div>
-    </>
+    </motion.div>
   );
 }
 
