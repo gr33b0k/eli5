@@ -21,6 +21,13 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/chat", chatRoutes);
 
+app.get("/debug/cookies", (req, res) => {
+  res.json({
+    cookies: req.cookies,
+    headers: req.headers.cookie,
+  });
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

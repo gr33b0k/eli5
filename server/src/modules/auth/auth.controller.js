@@ -3,8 +3,7 @@ import { me, register, login } from "./auth.service.js";
 
 function handleError(res, error) {
   if (error instanceof AppError) {
-    return res;
-    res.status(error.status).json({
+    return res.status(error.status).json({
       error: error.message,
       code: error.code,
       meta: error.meta,
