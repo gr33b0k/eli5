@@ -41,25 +41,29 @@ You can register, log in, create chat sessions, and keep message history while t
    cd ../client && npm install
    ```
 
-4. Configure the backend:
-   - Create a `.env` file inside `server/`
-   - Add `DATABASE_URL`, `OPENROUTER_API_KEY` and `JWT_SECRET`
+4. Configure the frontend:
+   - Create a `.env` file inside `client/`
+   - Add `VITE_API_URL`
 
-5. Generate Prisma client:
+5. Configure the backend:
+   - Create a `.env` file inside `server/`
+   - Add `CLIENT_URL`, `DATABASE_URL`, `OPENROUTER_API_KEY` and `JWT_SECRET`
+
+6. Generate Prisma client:
 
    ```sh
    cd server
    npx prisma generate
    ```
 
-6. Start the application:
+7. Start the application:
 
    ```sh
    cd ..
    npm run dev
    ```
 
-7. Open the app:
+8. Open the app:
    ```sh
    http://localhost:5173
    ```
