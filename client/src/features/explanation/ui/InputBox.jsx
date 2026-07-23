@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PaperPlaneRightIcon, StopIcon } from "@phosphor-icons/react";
 
-function InputBox({ onSubmit }) {
+function InputBox({ onSubmit, disabled }) {
   const [value, setValue] = useState("");
 
   const handleSubmit = () => {
@@ -21,6 +21,7 @@ function InputBox({ onSubmit }) {
     <div className="glass-40 text-text focus-within:shadow-primary focus-within:shadow-even flex gap-2 rounded-3xl px-4 py-2 transition-shadow duration-300 ease-in-out">
       <input
         value={value}
+        disabled={disabled}
         onKeyDown={handleKeyDown}
         onChange={(e) => setValue(e.target.value)}
         className="caret-text active:shadow-accent flex-1 outline-0"
@@ -28,7 +29,8 @@ function InputBox({ onSubmit }) {
       />
       <button
         onClick={handleSubmit}
-        className="btn-primary px-3 py-2 text-white shadow-none"
+        disabled={disabled}
+        className={`btn-primary px-3 py-2 text-white shadow-none ${disabled ? "bg-accent/50 pointer-events-none" : ""}`}
       >
         <PaperPlaneRightIcon size={22} />
       </button>

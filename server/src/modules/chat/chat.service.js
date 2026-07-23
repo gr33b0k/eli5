@@ -144,6 +144,8 @@ export async function sendMessage(chatId, userId, query, level) {
     );
 
     if (!response.ok) {
+      console.error(await response.text());
+
       throw new AppError(
         502,
         "OPENROUTER_REQUEST_FAILED",

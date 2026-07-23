@@ -5,6 +5,9 @@ export const useChatStore = create(
   devtools((set, get) => ({
     chats: [],
     activeChatId: null,
+    generating: false,
+
+    setGenerating: (value) => set({ generating: value }),
 
     setChats: (chats) =>
       set({ chats: chats.map((chat) => ({ ...chat, messages: [] })) }),

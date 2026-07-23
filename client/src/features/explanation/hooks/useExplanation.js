@@ -22,6 +22,8 @@ export function useExplanation() {
 
   const updateMessage = useChatStore((state) => state.updateMessage);
 
+  const setGenerating = useChatStore((state) => state.setGenerating);
+
   const setActiveChat = useChatStore((state) => state.setActiveChat);
 
   const setChatMessages = useChatStore((state) => state.setChatMessages);
@@ -59,6 +61,8 @@ export function useExplanation() {
 
   async function handleExplain(query) {
     let chatId = activeChatId;
+
+    setGenerating(true);
 
     if (!chatId) {
       const chat = await createChat();
@@ -119,6 +123,8 @@ export function useExplanation() {
           ],
         },
       });
+    } finally {
+      setGenerating(false);
     }
   }
 

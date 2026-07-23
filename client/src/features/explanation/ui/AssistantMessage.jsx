@@ -30,7 +30,6 @@ const item = {
 
 function AssistantMessage({ message }) {
   const loading = message.loading;
-  // const loading = true;
   const content = message.content;
   const isError = message.error === true || !content;
 

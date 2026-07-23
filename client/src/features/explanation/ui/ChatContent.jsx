@@ -14,6 +14,7 @@ function ChatContent() {
   const chats = useChatStore((state) => state.chats);
   const activeChatId = useChatStore((state) => state.activeChatId);
   const getChatById = useChatStore((state) => state.getChatById);
+  const generating = useChatStore((state) => state.generating);
 
   const currentChat = getChatById(activeChatId);
 
@@ -33,7 +34,7 @@ function ChatContent() {
             }}
             className="glass rounded-4xl p-3"
           >
-            <InputBox onSubmit={handleExplain} />
+            <InputBox onSubmit={handleExplain} disabled={generating} />
           </motion.div>
         </motion.div>
       ) : (
