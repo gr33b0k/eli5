@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { CopyIcon, CheckIcon } from "@phosphor-icons/react";
+
+import { formatContent } from "@/shared/lib";
 
 import Body from "./Body";
 import Skeleton from "./Skeleton";
@@ -26,8 +30,22 @@ const item = {
 
 function AssistantMessage({ message }) {
   const loading = message.loading;
+  // const loading = true;
   const content = message.content;
   const isError = message.error === true || !content;
+
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy(e) {
+    e.preventDefault();
+
+    const text = formatContent(message.content);
+
+    await navigator.clipboard.writeText(text);
+
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  }
 
   return (
     <article
@@ -55,12 +73,24 @@ function AssistantMessage({ message }) {
             animate="visible"
             className="flex h-full flex-1 flex-col gap-4"
           >
-            <motion.h2
-              variants={item}
-              className="text-lg font-medium capitalize md:text-xl"
-            >
-              {content.title}
-            </motion.h2>
+            <div className="flex items-center justify-between">
+              <motion.h2
+                variants={item}
+                className="text-lg font-medium capitalize md:text-xl"
+              >
+                {content.title}
+              </motion.h2>
+              <button
+                className="glass text-accent flex items-center justify-center rounded-2xl p-2"
+                onClick={handleCopy}
+              >
+                {copied ? (
+                  <CheckIcon weight="bold" size={24} />
+                ) : (
+                  <CopyIcon weight="bold" size={24} />
+                )}
+              </button>
+            </div>
 
             <Body content={content} />
           </motion.div>
